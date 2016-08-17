@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp">
+
+        <ImageView
+            android:id="@+id/visitordiscover_feed_image_smallicon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:src="@mipmap/visitordiscover_feed_image_smallicon" />
+
+
+        <ImageView
+            android:id="@+id/visitordiscover_feed_image_house"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="45dp"
+            android:src="@mipmap/visitordiscover_feed_image_house" />
+
+        <View
+            android:id="@+id/anim_layout"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/gradient_home_anim" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/anim_layout"
+            android:background="#eeeeee" />
+
+        <!--  <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_below="@+id/visitordiscover_feed_image_house"
+              android:orientation="horizontal">
+
+              <View
+                  android:layout_width="0dp"
+                  android:layout_height="50dp"
+                  android:layout_weight="2"
+                  android:background="@drawable/gradient_home_anim_left" />
+
+              <View
+                  android:layout_width="0dp"
+                  android:layout_height="50dp"
+                  android:layout_weight="1"
+                  android:background="#eeeeee" />
+
+              <View
+                  android:layout_width="0dp"
+                  android:layout_height="50dp"
+                  android:layout_weight="2"
+                  android:background="@drawable/gradient_home_anim_right" />
+          </LinearLayout>-->
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/home_tip"
+        android:textColor="@color/tip_text_color" />
+
+
+    <Button
+
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/white_button_shap"
+        android:minWidth="150dp"
+        android:text="@string/go_follow"
+        android:textColor="@color/appSubThemeColor" />
+</LinearLayout>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/defult_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_app_title" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/darkgrey" />
+
+    <RelativeLayout
+        style="@style/normal_item_style"
+        android:gravity="center_vertical">
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/regist_location"
+            android:textSize="@dimen/text_size_16" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:drawableEnd="@mipmap/triangle"
+            android:gravity="center"
+            android:text="+86"
+            android:textSize="@dimen/text_size_16" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/darkgrey" />
+
+    <LinearLayout style="@style/normal_item_style">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@null"
+            android:hint="@string/regist_input_hint_text"
+            android:padding="5dp"
+            android:textSize="@dimen/text_size_16" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/darkgrey" />
+
+    <TextView
+        android:id="@+id/tv_regist_tip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/orange_button_shap"
+        android:text="@string/regist_text"
+        android:textColor="@color/white" />
+
+</LinearLayout>

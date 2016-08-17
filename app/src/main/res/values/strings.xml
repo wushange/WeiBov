@@ -1,0 +1,47 @@
+<resources>
+    <string name="app_name">LOVE HOME</string>
+    <string name="app_ok">确定</string>
+    <string name="app_cancel">取消</string>
+    <string name="app_choose">选择</string>
+
+    <string name="tv_loading">正加载,请稍后...</string>
+    <string name="loading">正在处理...</string>
+    <string name="save_pic">保存</string>
+    <string name="share">分享</string>
+    <string name="copy_url">复制链接</string>
+    <string name="download_again">重新下载</string>
+
+
+    <string name="home_tip">关注一些人,看看有什么惊喜</string>
+    <string name="go_follow">去关注</string>
+    <string name="regist_location">中国</string>
+    <string name="regist_input_hint_text">请输入手机号</string>
+    <string name="regist_text">注册</string>
+
+
+    <string name="move_up_to_cancel">手指上滑，取消发送</string>
+    <string name="release_to_cancel">松开手指，取消发送</string>
+    <string name="Recording_without_permission">Recording without permission</string>
+    <string name="The_recording_time_is_too_short">The recording time is too short</string>
+    <string name="send_failure_please">Send failure, please test whether the server connection</string>
+    <string name="Send_voice_need_sdcard_support">Send voice need sdcard support</string>
+    <string name="recoding_fail">The recording failure, please try again！</string>
+    <string name="fingerprint_description">Confirm fingerprint to continue</string>
+    <string name="fingerprint_hardware_not_support">Hardware not Support</string>
+    <string name="fingerprint_hint">Touch sensor</string>
+    <string name="fingerprint_not_enroll">No Fingerprint Enroll</string>
+    <string name="fingerprint_not_recognized">Fingerprint not recognized. Try again</string>
+    <string name="fingerprint_success">Fingerprint recognized</string>
+    <string name="new_fingerprint_enrolled_description">A new fingerprint was added to this device, so your password is required.</string>
+    <string name="use_fingerprint_in_future">Use fingerprint in the future</string>
+    <string name="use_fingerprint_to_authenticate_title">Use fingerprint to authenticate</string>
+    <string name="use_fingerprint_to_authenticate_key">use_fingerprint_to_authenticate_key</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="use_password">Use password</string>
+    <string-array name="message_dialogs">
+        <item>置顶记录</item>
+        <item>删除记录</item>
+        <item>标为已读</item>
+        <item>标为未读</item>
+    </string-array>
+</resources>

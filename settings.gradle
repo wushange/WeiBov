@@ -1,0 +1,2 @@
+include ':app', ':stylelib'
+include ':weiboSDK'
