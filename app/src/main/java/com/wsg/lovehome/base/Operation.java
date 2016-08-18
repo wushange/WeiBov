@@ -3,10 +3,14 @@ package com.wsg.lovehome.base;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.InputType;
 import android.view.Gravity;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -15,9 +19,14 @@ import com.mylhyl.acp.AcpListener;
 import com.mylhyl.acp.AcpOptions;
 import com.wsg.lovehome.MyApplication;
 import com.wsg.lovehome.R;
+import com.wsg.lovehome.util.BuildProperties;
+import com.wsg.lovehome.util.StatusBarUtil;
 import com.wsg.lovehome.util.data.DTO;
 
+import java.io.IOException;
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -140,6 +149,166 @@ public class Operation {
     }
 
 
+    /*** * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     *                                                                                             *
+     *                                 StatusBar                                                   *
+     *                                                                                             *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
+    /**
+     * 设置状态栏字体颜色是否加深
+     *
+     * @param isDark true为加深
+     */
+    public Operation setStatusBarTextColor(boolean isDark) {
+        if (isDark == true) {
+            if (isMIUI()) {
+                setMiuiStatusBarDarkMode(mContext, true);
+            } else if (isFlyme()) {
+                setMeizuStatusBarDarkIcon(mContext, true);
+            } else {
+                setStatusBarLightMode(mContext, true);
+            }
+        } else {
+            if (isMIUI()) {
+                setMiuiStatusBarDarkMode(mContext, false);
+            } else if (isFlyme()) {
+                setMeizuStatusBarDarkIcon(mContext, false);
+            } else {
+                setStatusBarLightMode(mContext, false);
+            }
+        }
+        return this;
+    }
+
+    /**
+     * set status bar translucency
+     */
+    public Operation setTranslucentStatus(boolean on) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window win = mContext.getWindow();
+            WindowManager.LayoutParams winParams = win.getAttributes();
+            final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+            if (on) {
+                winParams.flags |= bits;
+            } else {
+                winParams.flags &= ~bits;
+            }
+            win.setAttributes(winParams);
+        }
+        return this;
+    }
+
+    /**
+     * set status bar translucency
+     */
+    public Operation setTranslucentStatusPadding(boolean on) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window win = mContext.getWindow();
+            WindowManager.LayoutParams winParams = win.getAttributes();
+            final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
+            if (on) {
+                StatusBarUtil.setRootView(mContext);
+                winParams.flags |= bits;
+            } else {
+                winParams.flags &= ~bits;
+            }
+            win.setAttributes(winParams);
+        }
+        return this;
+    }
+
+    /**
+     * 设置6.0+状态栏字体颜色
+     *
+     * @param activity
+     * @param isFontColorDark
+     */
+    private void setStatusBarLightMode(Activity activity, boolean isFontColorDark) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (isFontColorDark) {
+                // 沉浸式
+                //                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+                //非沉浸式
+                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+            } else {
+                //非沉浸式
+                activity.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_VISIBLE);
+            }
+        }
+    }
+
+    /**
+     * MIUI 状态栏字体颜色
+     *
+     * @param activity
+     * @param darkmode
+     * @return
+     */
+    private boolean setMiuiStatusBarDarkMode(Activity activity,
+                                             boolean darkmode) {
+        Class<? extends Window> clazz = activity.getWindow().getClass();
+        try {
+            int darkModeFlag = 0;
+            Class<?> layoutParams = Class
+                    .forName("android.view.MiuiWindowManager$LayoutParams");
+            Field field = layoutParams
+                    .getField("EXTRA_FLAG_STATUS_BAR_DARK_MODE");
+            darkModeFlag = field.getInt(layoutParams);
+            Method extraFlagField = clazz.getMethod("setExtraFlags", int.class,
+                    int.class);
+            extraFlagField.invoke(activity.getWindow(), darkmode ? darkModeFlag
+                    : 0, darkModeFlag);
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    /**
+     * flyme状态栏字体颜色
+     *
+     * @param activity
+     * @param dark
+     * @return
+     */
+    private boolean setMeizuStatusBarDarkIcon(Activity activity,
+                                              boolean dark) {
+        boolean result = false;
+        if (activity != null) {
+            try {
+                WindowManager.LayoutParams lp = activity.getWindow()
+                        .getAttributes();
+                Field darkFlag = WindowManager.LayoutParams.class
+                        .getDeclaredField("MEIZU_FLAG_DARK_STATUS_BAR_ICON");
+                Field meizuFlags = WindowManager.LayoutParams.class
+                        .getDeclaredField("meizuFlags");
+                darkFlag.setAccessible(true);
+                meizuFlags.setAccessible(true);
+                int bit = darkFlag.getInt(null);
+                int value = meizuFlags.getInt(lp);
+                if (dark) {
+                    value |= bit;
+                } else {
+                    value &= ~bit;
+                }
+                meizuFlags.setInt(lp, value);
+                activity.getWindow().setAttributes(lp);
+                result = true;
+            } catch (Exception e) {
+            }
+        }
+        return result;
+    }
+
+    /***
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * *
+     * ToastUtil                                                   *
+     * *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     */
+
     public void showToast(CharSequence text) {
         if (mToast == null) {
             mToast = Toast.makeText(mContext, text, Toast.LENGTH_SHORT);
@@ -173,6 +342,13 @@ public class Operation {
 
     }
 
+    /***
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * *
+     * MetraDesginDialog                                           *
+     * *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     */
     public void showBasicDialog(String title, String content) {
         dialog = new MaterialDialog.Builder(mContext)
                 .title(title)
@@ -251,6 +427,13 @@ public class Operation {
                 .show();
     }
 
+    /***
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * *
+     * SweetAlertDialog                                            *
+     * *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     */
     public void showSweetBasic(String str) {
         if (mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
             mSweetAlertDialog.dismissWithAnimation();
@@ -363,6 +546,13 @@ public class Operation {
 
     }
 
+    /***
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     * *
+     * 权限检测                                                     *
+     * *
+     * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+     */
 
     public void checkPermission(Context context, AcpListener listener, String... permissions) {
         Acp.getInstance(context).request(new AcpOptions.Builder().setPermissions(permissions).build(), listener);
@@ -400,4 +590,28 @@ public class Operation {
 
     }
 
+    private final String KEY_MIUI_VERSION_CODE = "ro.miui.ui.version.code";
+    private final String KEY_MIUI_VERSION_NAME = "ro.miui.ui.version.name";
+    private final String KEY_MIUI_INTERNAL_STORAGE = "ro.miui.internal.storage";
+
+    private boolean isMIUI() {
+        try {
+            final BuildProperties prop = BuildProperties.newInstance();
+            return prop.getProperty(KEY_MIUI_VERSION_CODE, null) != null
+                    || prop.getProperty(KEY_MIUI_VERSION_NAME, null) != null
+                    || prop.getProperty(KEY_MIUI_INTERNAL_STORAGE, null) != null;
+        } catch (final IOException e) {
+            return false;
+        }
+    }
+
+    private boolean isFlyme() {
+        try {
+            // Invoke Build.hasSmartBar()
+            final Method method = Build.class.getMethod("hasSmartBar");
+            return method != null;
+        } catch (final Exception e) {
+            return false;
+        }
+    }
 }

@@ -5,7 +5,6 @@ import android.view.View;
 
 import com.wsg.lovehome.R;
 import com.wsg.lovehome.base.BaseActivity;
-import com.wsg.lovehome.util.StatusBarUtil;
 import com.wsg.lovehome.widget.AppTitle;
 
 import butterknife.BindView;
@@ -27,10 +26,6 @@ public class RegistActivity extends BaseActivity {
         return true;
     }
 
-    @Override
-    protected boolean isApplyStatusBarTranslucency() {
-        return false;
-    }
 
     @Override
     public int bindLayout() {
@@ -39,7 +34,6 @@ public class RegistActivity extends BaseActivity {
 
     @Override
     public void initView(View view) {
-        StatusBarUtil.setStatusBarTextColor(this, true);
         appTitle.setLeftText(R.string.app_cancel)
                 .setLeftTextColor(R.color.black_deep)
                 .setLeftTextClickListener(new View.OnClickListener() {
@@ -49,6 +43,7 @@ public class RegistActivity extends BaseActivity {
                     }
                 }).setCenterTitle(R.string.regist_text)
                 .setCenterTitleColor(R.color.black_deep);
+        mBaseOperation.setStatusBarTextColor(true);
 
     }
 

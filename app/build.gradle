@@ -64,7 +64,8 @@ dependencies {
     //Sweetalert
     compile 'cn.pedant.sweetalert:library:1.3'
     compile 'com.shizhefei:ViewPagerIndicator:1.1.2'
-
+//圆形Imageview
+    compile 'de.hdodenhof:circleimageview:2.1.0'
     //拉伸缩放view
     compile 'com.github.frank-zhu:pullzoomview:1.0.0'
 }

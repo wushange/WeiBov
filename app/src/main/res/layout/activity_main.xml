@@ -12,10 +12,15 @@
         android:layout_weight="1"
         android:background="#eee" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/darkgrey" />
+
     <com.shizhefei.view.indicator.FixedIndicatorView
         android:id="@+id/tabmain_indicator"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:background="#fff" />
 
 </LinearLayout>

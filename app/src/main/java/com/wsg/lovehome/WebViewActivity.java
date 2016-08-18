@@ -23,10 +23,6 @@ public class WebViewActivity extends BaseActivity {
         return true;
     }
 
-    @Override
-    protected boolean isApplyStatusBarTranslucency() {
-        return false;
-    }
 
     @Override
     public int bindLayout() {

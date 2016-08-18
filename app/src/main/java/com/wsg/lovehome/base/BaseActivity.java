@@ -18,6 +18,7 @@ import com.wsg.lovehome.injector.component.ActivityComponent;
 import com.wsg.lovehome.injector.component.ApplicationComponent;
 import com.wsg.lovehome.injector.module.ActivityModule;
 import com.wsg.lovehome.util.HideInputUtils;
+import com.wsg.lovehome.util.StatusBarUtil;
 import com.wsg.lovehome.widget.swipebacklayout.SwipeBackLayout;
 import com.wsg.lovehome.widget.swipebacklayout.Utils;
 import com.wsg.lovehome.widget.swipebacklayout.activity.SwipeBackActivityBase;
@@ -60,7 +61,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
         mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
         setContentView(mContextView);
         ButterKnife.bind(this);//注册黄油刀
-        setTranslucentStatus(isApplyStatusBarTranslucency());
         initInjector();
         context = new WeakReference<Activity>(this);
         mBaseOperation = new Operation(this);//初始化通用操作
@@ -78,7 +78,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
 
     protected abstract boolean isEnableSwipBack();
 
-    protected abstract boolean isApplyStatusBarTranslucency();
 
 
     protected ApplicationComponent getApplicationComponent() {
@@ -98,6 +97,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
             WindowManager.LayoutParams winParams = win.getAttributes();
             final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
             if (on) {
+                StatusBarUtil.setRootView(this);
                 winParams.flags |= bits;
             } else {
                 winParams.flags &= ~bits;

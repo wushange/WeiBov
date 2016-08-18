@@ -45,14 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-//            Window win = getWindow();
-//            WindowManager.LayoutParams winParams = win.getAttributes();
-//            final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-//            winParams.flags |= bits;
-//            win.setAttributes(winParams);
-//        }
-//        StatusBarUtil.setRootView(this);
 
         StatusBarUtil.setStatusBarTextColor(this, true);
         indicator.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.parseColor("#FF8200"), Color.GRAY));
@@ -113,6 +105,7 @@ public class MainActivity extends AppCompatActivity {
             TextView textView = (TextView) convertView;
             textView.setText(tabNames[position]);
             textView.setCompoundDrawablesWithIntrinsicBounds(0, tabIcons[position], 0, 0);
+            textView.setCompoundDrawablePadding(0);
             return textView;
         }
 

@@ -19,7 +19,6 @@ import com.wsg.lovehome.base.BaseActivity;
 import com.wsg.lovehome.ui.login.LoginActivity;
 import com.wsg.lovehome.util.Contanst;
 import com.wsg.lovehome.util.ShareUtils;
-import com.wsg.lovehome.util.StatusBarUtil;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -58,7 +57,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     public void initView(View view) {
-        StatusBarUtil.setStatusBarTextColor(this, true);
+        mBaseOperation.setTranslucentStatus(true).setStatusBarTextColor(true);
     }
 
 
@@ -100,11 +99,6 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected boolean isEnableSwipBack() {
         return false;
-    }
-
-    @Override
-    protected boolean isApplyStatusBarTranslucency() {
-        return true;
     }
 
 
