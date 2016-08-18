@@ -73,8 +73,9 @@ public class HomeFragment extends BaseFragmentV4 {
     }
 
     public void initDefultTip() {
-        View defultFocusView = LayoutInflater.from(getContext()).inflate(R.layout.anim_home_layout, null);
+        View defultFocusView = LayoutInflater.from(getContext()).inflate(R.layout.empty_home_layout, null);
         ImageView tipImageView = (ImageView) defultFocusView.findViewById(R.id.visitordiscover_feed_image_smallicon);
+        ImageView houseView = (ImageView) defultFocusView.findViewById(R.id.visitordiscover_feed_image_house);
         root.addView(defultFocusView);
         final Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.home_tip);
         animation.setInterpolator(new LinearInterpolator());
