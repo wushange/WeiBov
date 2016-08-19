@@ -16,6 +16,9 @@ import com.shizhefei.view.indicator.IndicatorViewPager;
 import com.shizhefei.view.indicator.transition.OnTransitionTextListener;
 import com.shizhefei.view.viewpager.SViewPager;
 import com.wsg.lovehome.base.BaseFragmentV4;
+import com.wsg.lovehome.injector.HasComponent;
+import com.wsg.lovehome.injector.component.ApplicationComponent;
+import com.wsg.lovehome.injector.module.ActivityModule;
 import com.wsg.lovehome.ui.find.FindFragment;
 import com.wsg.lovehome.ui.home.HomeFragment;
 import com.wsg.lovehome.ui.me.MeFragment;
@@ -28,7 +31,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HasComponent<MainComponent> {
 
     private IndicatorViewPager indicatorViewPager;
     private View centerView;
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     SViewPager viewPager;
 
     List<BaseFragmentV4> fragmentV4s = new ArrayList<>();
+    private MainComponent mMainComponent;
 
     @Override
     protected void onCreate(Bundle arg0) {
@@ -45,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
         StatusBarUtil.setStatusBarTextColor(this, true);
+        initInjector();
         indicator.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.parseColor("#FF8200"), Color.GRAY));
         //这里可以添加一个view，作为centerView，会位于Indicator的tab的中间
         centerView = getLayoutInflater().inflate(R.layout.tab_main_center, indicator, false);
@@ -69,6 +73,15 @@ public class MainActivity extends AppCompatActivity {
         // 设置viewpager保留界面不重新加载的页面数量
         viewPager.setOffscreenPageLimit(4);
     }
+
+    public void initInjector() {
+        mMainComponent = DaggerMainComponent.builder()
+                .applicationComponent(getApplicationComponent())
+                .activityModule(getActivityModule())
+                .build();
+        mMainComponent.inject(this);
+    }
+
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
@@ -113,5 +126,18 @@ public class MainActivity extends AppCompatActivity {
         public Fragment getFragmentForPage(int position) {
             return fragmentV4s.get(position);
         }
+    }
+
+    protected ApplicationComponent getApplicationComponent() {
+        return ((MyApplication) getApplication()).getApplicationComponent();
+    }
+
+    protected ActivityModule getActivityModule() {
+        return new ActivityModule(this);
+    }
+
+    @Override
+    public MainComponent getComponent() {
+        return mMainComponent;
     }
 }

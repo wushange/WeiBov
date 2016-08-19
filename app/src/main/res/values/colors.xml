@@ -9,7 +9,9 @@
     <color name="text_selete_org">#FF8200</color>
     <color name="login_bg_color">#EDEDED</color>
     <color name="login_text_color">#7b9dc3</color>
-
+    <color name="defult_text_color">#333333</color>
+    <color name="defult_tab_color">#999999</color>
+    <color name="defult_tabhiglh_color">#555555</color>
     <color name="common_top_bar_blue">#4ebcd3</color>
     <color name="btn_login_normal">#00acff</color>
     <color name="btn_login_pressed">#46678d</color>

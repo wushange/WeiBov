@@ -1,2 +1,2 @@
-include ':app', ':stylelib'
+include ':app', ':stylelib', ':GreenDaoGenerator'
 include ':weiboSDK'

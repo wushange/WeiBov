@@ -30,6 +30,9 @@ dependencies {
     compile 'com.android.support:support-v13:24.1.1'
     compile 'com.android.support:multidex:1.0.0'
     compile 'com.android.support:recyclerview-v7:24.1.1'
+    compile 'com.wushange:converter-fastjson:1.0'
+    //greendao
+    compile 'de.greenrobot:greendao:2.1.0'
     //图片浏览
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'com.facebook.fresco:fresco:0.10.0'
@@ -57,15 +60,17 @@ dependencies {
     //material desgin风格提示框
     compile 'com.afollestad.material-dialogs:core:0.8.6.1'
     compile 'com.afollestad.material-dialogs:commons:0.8.6.1'
-    compile project(':stylelib')
     //Event时间订阅
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'cn.finalteam:galleryfinal:1.4.8.7'
     //Sweetalert
     compile 'cn.pedant.sweetalert:library:1.3'
     compile 'com.shizhefei:ViewPagerIndicator:1.1.2'
-//圆形Imageview
+    //圆形Imageview
     compile 'de.hdodenhof:circleimageview:2.1.0'
     //拉伸缩放view
     compile 'com.github.frank-zhu:pullzoomview:1.0.0'
+    compile project(':stylelib')
+    compile project(':GreenDaoGenerator')
+    compile project(':weiboSDK')
 }

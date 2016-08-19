@@ -1,8 +1,6 @@
 package com.wsg.lovehome.base;
 
 
-import com.wsg.lovehome.api.ApiHelper;
-
 import rx.Subscription;
 import rx.subscriptions.CompositeSubscription;
 
@@ -14,12 +12,9 @@ public abstract class BasePresenter<T> {
     public T mView;//View
     protected Subscription mSubscription;
     protected CompositeSubscription mCompositeSubscription;//使用compositesubcription 管理Subcription
-    protected ApiHelper apiHelper;
 
     public void attachView(T view) {
         this.mView = view;
-        if (apiHelper == null)
-            apiHelper = new ApiHelper();
         if (mCompositeSubscription == null)
             mCompositeSubscription = new CompositeSubscription();
     }

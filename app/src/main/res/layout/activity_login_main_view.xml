@@ -108,7 +108,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="5"
                         android:background="@null"
-                        android:hint="@string/login_input_account_hint_text" />
+                        android:hint="@string/login_input_password_hint_text" />
 
                     <TextView
                         android:layout_width="0dp"

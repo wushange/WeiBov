@@ -13,16 +13,21 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
-import com.wsg.lovehome.api.RetrofitUtil;
 import com.wsg.lovehome.injector.component.ApplicationComponent;
 import com.wsg.lovehome.injector.component.DaggerApplicationComponent;
 import com.wsg.lovehome.injector.module.ApplicationModule;
+import com.wsg.lovehome.util.Contanst;
 import com.wsg.lovehome.util.GlideImageLoader;
+
+import java.io.File;
+import java.util.concurrent.TimeUnit;
 
 import cn.finalteam.galleryfinal.CoreConfig;
 import cn.finalteam.galleryfinal.FunctionConfig;
 import cn.finalteam.galleryfinal.GalleryFinal;
 import cn.finalteam.galleryfinal.ThemeConfig;
+import okhttp3.Cache;
+import okhttp3.OkHttpClient;
 
 /**
  * Created by wushange on 2016/06/01.
@@ -103,13 +108,18 @@ public class MyApplication extends android.app.Application {
     public static final int MAX_MEMORY_CACHE_SIZE = MAX_HEAP_SIZE / 8;
 
     private void initFrescoConfig() {
+        File cacheFile = new File(Contanst.Cache_Root_Dir, Contanst.CACHE_DIR);
+        Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .cache(cache).connectTimeout(15, TimeUnit.SECONDS)
+                .build();
         final MemoryCacheParams bitmapCacheParams =
                 new MemoryCacheParams(MAX_MEMORY_CACHE_SIZE, // Max total size of elements in the cache
                         Integer.MAX_VALUE,                     // Max entries in the cache
                         MAX_MEMORY_CACHE_SIZE, // Max total size of elements in eviction queue
                         Integer.MAX_VALUE,                     // Max length of eviction queue
                         Integer.MAX_VALUE);
-        ImagePipelineConfig config = OkHttpImagePipelineConfigFactory.newBuilder(this, RetrofitUtil.getOkHttpClient())
+        ImagePipelineConfig config = OkHttpImagePipelineConfigFactory.newBuilder(this, okHttpClient)
                 .setProgressiveJpegConfig(new SimpleProgressiveJpegConfig())
                 .setBitmapMemoryCacheParamsSupplier(new Supplier<MemoryCacheParams>() {
                     public MemoryCacheParams get() {
