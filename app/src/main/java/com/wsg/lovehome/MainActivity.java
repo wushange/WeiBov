@@ -9,8 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.orhanobut.logger.Logger;
 import com.shizhefei.view.indicator.FixedIndicatorView;
 import com.shizhefei.view.indicator.IndicatorViewPager;
 import com.shizhefei.view.indicator.transition.OnTransitionTextListener;
@@ -20,10 +20,16 @@ import com.wsg.lovehome.injector.HasComponent;
 import com.wsg.lovehome.injector.component.ApplicationComponent;
 import com.wsg.lovehome.injector.module.ActivityModule;
 import com.wsg.lovehome.ui.find.FindFragment;
+import com.wsg.lovehome.ui.findunlogin.FindUnLoginFragment;
 import com.wsg.lovehome.ui.home.HomeFragment;
+import com.wsg.lovehome.ui.homeunlogin.HomeUnLoginFragment;
 import com.wsg.lovehome.ui.me.MeFragment;
 import com.wsg.lovehome.ui.message.MessageFragment;
+import com.wsg.lovehome.ui.messageunlogin.MessageUnLoginFragment;
+import com.wsg.lovehome.ui.meunlogin.MeUnLoginFragment;
+import com.wsg.lovehome.util.AccessTokenKeeper;
 import com.wsg.lovehome.util.StatusBarUtil;
+import com.wsg.lovehome.widget.MoreWindow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,20 +63,36 @@ public class MainActivity extends AppCompatActivity implements HasComponent<Main
         indicator.setCenterView(centerView);
         centerView.setOnClickListener(onClickListener);
 
+        initFragments();
 
-        HomeFragment meFragment = new HomeFragment();
-        fragmentV4s.add(meFragment);
-        MessageFragment meFragment1 = new MessageFragment();
-        fragmentV4s.add(meFragment1);
-        FindFragment meFragment2 = new FindFragment();
-        fragmentV4s.add(meFragment2);
-        MeFragment meFragment3 = new MeFragment();
-        fragmentV4s.add(meFragment3);
+    }
+
+    private void initFragments() {
+        if (AccessTokenKeeper.readAccessToken(this).isSessionValid()) {
+            Logger.e("登陆状态");
+            HomeFragment homeFragment = new HomeFragment();
+            MessageFragment messageFragment = new MessageFragment();
+            FindFragment findFragment = new FindFragment();
+            MeFragment meFragment = new MeFragment();
+            fragmentV4s.add(homeFragment);
+            fragmentV4s.add(messageFragment);
+            fragmentV4s.add(findFragment);
+            fragmentV4s.add(meFragment);
+        } else {
+            Logger.e("游客状态");
+            HomeUnLoginFragment homeFragment = new HomeUnLoginFragment();
+            MessageUnLoginFragment messageFragment = new MessageUnLoginFragment();
+            FindUnLoginFragment findUnLoginFragment = new FindUnLoginFragment();
+            MeUnLoginFragment meFragment = new MeUnLoginFragment();
+            fragmentV4s.add(homeFragment);
+            fragmentV4s.add(messageFragment);
+            fragmentV4s.add(findUnLoginFragment);
+            fragmentV4s.add(meFragment);
+
+        }
         indicatorViewPager = new IndicatorViewPager(indicator, viewPager);
         indicatorViewPager.setAdapter(new MyAdapter(getSupportFragmentManager()));
-        // 禁止viewpager的滑动事件
         viewPager.setCanScroll(false);
-        // 设置viewpager保留界面不重新加载的页面数量
         viewPager.setOffscreenPageLimit(4);
     }
 
@@ -82,14 +104,19 @@ public class MainActivity extends AppCompatActivity implements HasComponent<Main
         mMainComponent.inject(this);
     }
 
+    @Override
+    protected void onResume() {
+        initFragments();
+        super.onResume();
+    }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if (v == centerView) {
-                //还可以移除哦
-                //indicator.removeCenterView();
-                Toast.makeText(getApplicationContext(), "点击了CenterView", Toast.LENGTH_SHORT).show();
+                MoreWindow mMoreWindow = new MoreWindow(MainActivity.this);
+                mMoreWindow.init();
+                mMoreWindow.showMoreWindow(v, 100);
             }
         }
     };

@@ -13,6 +13,7 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 import com.sina.weibo.sdk.auth.WeiboAuthListener;
 import com.sina.weibo.sdk.auth.sso.SsoHandler;
 import com.sina.weibo.sdk.exception.WeiboException;
+import com.wsg.lovehome.MainActivity;
 import com.wsg.lovehome.R;
 import com.wsg.lovehome.base.BaseActivity;
 import com.wsg.lovehome.util.AccessTokenKeeper;
@@ -74,8 +75,9 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 if (mAccessToken.isSessionValid()) {
                     Logger.e(mAccessToken.toString());
                     // 保存 Token 到 SharedPreferences
-
                     AccessTokenKeeper.writeAccessToken(getContext(), mAccessToken);
+                    finish();
+                    mBaseOperation.forward(MainActivity.class);
                 } else {
                     // 当您注册的应用程序签名不正确时，就会收到 Code，请确保签名正确
                     String code = bundle.getString("code", "");

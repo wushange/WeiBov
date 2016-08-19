@@ -13,6 +13,7 @@ import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.facebook.imagepipeline.decoder.SimpleProgressiveJpegConfig;
 import com.orhanobut.logger.LogLevel;
 import com.orhanobut.logger.Logger;
+import com.squareup.leakcanary.LeakCanary;
 import com.wsg.lovehome.injector.component.ApplicationComponent;
 import com.wsg.lovehome.injector.component.DaggerApplicationComponent;
 import com.wsg.lovehome.injector.module.ApplicationModule;
@@ -44,6 +45,7 @@ public class MyApplication extends android.app.Application {
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
         MultiDex.install(this);
+
     }
 
     @Override
@@ -53,6 +55,7 @@ public class MyApplication extends android.app.Application {
         context = this;
         initGallyFinal();
         initFrescoConfig();
+        LeakCanary.install(this);
         Logger.init("WUSHANGE").logLevel(LogLevel.FULL);
 //        LeakCanary.install(this);
 

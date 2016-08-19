@@ -198,27 +198,27 @@ public class AppTitle extends LinearLayout {
         return this;
     }
 
-    public AppTitle setRightButtonRes(int res) {
+    public AppTitle setRightImageRes(int res) {
         mRightBtn.setVisibility(VISIBLE);
         mRightBtn.setImageResource(res);
         return this;
 
     }
 
-    public AppTitle setRightButtonClickListener(OnClickListener onClickListener) {
+    public AppTitle setRightImageClickListener(OnClickListener onClickListener) {
         mRightBtn.setOnClickListener(onClickListener);
         return this;
 
     }
 
-    public AppTitle setRightSubButtonRes(int res) {
+    public AppTitle setRightSubImageRes(int res) {
         mRightSubBtn.setVisibility(VISIBLE);
         mRightSubBtn.setImageResource(res);
         return this;
 
     }
 
-    public AppTitle setRightSubButtonClickListener(OnClickListener onClickListener) {
+    public AppTitle setRightSubImageClickListener(OnClickListener onClickListener) {
         mRightSubBtn.setOnClickListener(onClickListener);
         return this;
     }

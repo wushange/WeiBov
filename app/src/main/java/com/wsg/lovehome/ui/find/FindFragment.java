@@ -103,8 +103,8 @@ public class FindFragment extends BaseFragmentV4 implements FindContract.View {
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getFragmentManager());
 
-        adapter.addFragment(new HotWeiBoFragment(), "热门");
-        adapter.addFragment(new StarWeiBoFragment(), "明星");
+        adapter.addFragment(new HotWeiBoFragment(), "视频");
+        adapter.addFragment(new StarWeiBoFragment(), "头条");
 
         viewPager.setAdapter(adapter);
 

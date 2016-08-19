@@ -46,6 +46,8 @@ public class WelcomeActivity extends BaseActivity {
     private AudioManager mAudioManager;
 
 
+    private Acp apc;
+
     @Override
     public void initInjector() {
     }
@@ -74,20 +76,8 @@ public class WelcomeActivity extends BaseActivity {
             subscription = Observable.timer(2, TimeUnit.SECONDS).subscribe(new Action1<Long>() {
                 @Override
                 public void call(Long aLong) {
-                    Logger.e("2s后判断是不是登陆过");
-                    //   不是第一次进入，判断是否登陆过
-                    if (ShareUtils.getSharePreBoolean(getContext(), Contanst.APP_AUTO_LOGIN, true) == true) {
-                        Logger.e("有登陆过执行登陆方法");
-                        mBaseOperation.forward(MainActivity.class);
-                        finish();
-                        //     有登陆过执行登陆方法
-                    } else { //  没有登陆过 跳到登陆页
-                        Logger.e("没有登陆过 跳到登陆页");
-                        mBaseOperation.forward(LoginActivity.class);
-                        finish();
-
-                    }
-
+                    mBaseOperation.forward(MainActivity.class);
+                    finish();
                 }
             });
         }
@@ -105,14 +95,17 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void onStop() {
         super.onStop();
-        Acp.getInstance(getContext()).request(new AcpOptions.Builder().setPermissions(Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO).build(), new AcpListener() {
+        apc = Acp.getInstance(getContext());
+        apc.request(new AcpOptions.Builder().setPermissions(Manifest.permission.READ_PHONE_STATE, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO).build(), new AcpListener() {
             @Override
             public void onGranted() {
                 Logger.e("授权成功");
+                apc = null;
             }
 
             @Override
             public void onDenied(List<String> permissions) {
+
 
             }
         });

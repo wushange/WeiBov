@@ -2,18 +2,12 @@ package com.wsg.lovehome.ui.home;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LinearInterpolator;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.wsg.lovehome.R;
 import com.wsg.lovehome.base.BaseFragmentV4;
-import com.wsg.lovehome.ui.login.LoginActivity;
-import com.wsg.lovehome.ui.regist.RegistActivity;
+import com.wsg.lovehome.util.AccessTokenKeeper;
 import com.wsg.lovehome.widget.AppTitle;
 
 import butterknife.BindView;
@@ -49,40 +43,32 @@ public class HomeFragment extends BaseFragmentV4 {
 
     @Override
     public void initView(View view) {
-        appTitle.setCenterTitle("首页")
+        appTitle.setCenterTitle(AccessTokenKeeper.readAccessToken(getContext()).getUid())
                 .setCenterTitleColor(R.color.black_deep)
-                .setLeftText("注册")
-                .setLeftTextColor(R.color.text_selete_org)
-                .setLeftTextClickListener(new View.OnClickListener() {
+                .setLeftImage(R.drawable.navigationbar_friendattention_selete)
+                .setLeftImageClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        mBaseOperation.forward(RegistActivity.class);
                     }
                 })
-                .setRightText("登陆")
-                .setRightTextColor(R.color.text_selete_org)
-                .setRightTextClickListener(new View.OnClickListener() {
+                .setRightImageRes(R.drawable.navigationbar_icon_radar_selete)
+                .setRightImageClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        mBaseOperation.forward(LoginActivity.class);
 
                     }
                 });
 
-        initDefultTip();
-    }
-
-    public void initDefultTip() {
-        View defultFocusView = LayoutInflater.from(getContext()).inflate(R.layout.empty_home_layout, null);
-        ImageView tipImageView = (ImageView) defultFocusView.findViewById(R.id.visitordiscover_feed_image_smallicon);
-        ImageView houseView = (ImageView) defultFocusView.findViewById(R.id.visitordiscover_feed_image_house);
-        root.addView(defultFocusView);
-        final Animation animation = AnimationUtils.loadAnimation(getContext(), R.anim.home_tip);
-        animation.setInterpolator(new LinearInterpolator());
-        tipImageView.startAnimation(animation);
-
+        appTitle.getmCenterTitle().setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.timeline_icon_more_highlighted, 0);
+        appTitle.setCenterTitilClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                appTitle.getmCenterTitle().setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.timeline_icon_more_highlighted_uper,0);
+            }
+        });
 
     }
+
 
     @Override
     public void doBusiness(Context mContext) {

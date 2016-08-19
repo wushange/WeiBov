@@ -341,7 +341,7 @@ public class StringUtil {
     // regEx="[`~!@#$%^&*()+=|{}':;',\\[\\].<>/?~！@#￥%……&*（）——+|{}【】‘；：”“’。，、？]";
     // Pattern p = Pattern.compile(regEx);
     // Matcher m = p.matcher(name);
-    // if( m.FindFragment()){
+    // if( m.FindUnLoginFragment()){
     // Toast.makeText(InputRegisterInfoActivity.this, "姓名不允许输入特殊符号！",
     // Toast.LENGTH_LONG).show();
     // }
