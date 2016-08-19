@@ -2,12 +2,8 @@ package com.wsg.lovehome.ui.me;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
 
-import com.ecloud.pulltozoomview.PullToZoomScrollViewEx;
 import com.orhanobut.logger.Logger;
 import com.wsg.lovehome.R;
 import com.wsg.lovehome.base.BaseFragmentV4;
@@ -22,8 +18,6 @@ public class MeFragment extends BaseFragmentV4 {
     @BindView(R.id.apptitle)
     AppTitle appTitle;
 
-    @BindView(R.id.pzs_me_view)
-    PullToZoomScrollViewEx pullToZoomScrollViewEx;
 
     @Override
     public int bindLayout() {
@@ -42,20 +36,10 @@ public class MeFragment extends BaseFragmentV4 {
     @Override
     public void initView(View view) {
         appTitle.setCenterTitle("我")
-                .setCenterTitleColor(R.color.black_deep)
-                .setRightText("设置").setRightTextColor(R.color.black_deep);
-        View headView = LayoutInflater.from(getContext()).inflate(R.layout.me_defult_headview, null, false);
-        View zoomView = LayoutInflater.from(getContext()).inflate(R.layout.me_defult_zoomview, null, false);
-        View contentView = LayoutInflater.from(getContext()).inflate(R.layout.me_defult_contentview, null, false);
-        DisplayMetrics localDisplayMetrics = new DisplayMetrics();
-        getActivity().getWindowManager().getDefaultDisplay().getMetrics(localDisplayMetrics);
-        int mScreenHeight = localDisplayMetrics.heightPixels;
-        int mScreenWidth = localDisplayMetrics.widthPixels;
-        LinearLayout.LayoutParams localObject = new LinearLayout.LayoutParams(mScreenWidth, (int) (8.0F * (mScreenWidth / 16.0F)));
-        pullToZoomScrollViewEx.setHeaderLayoutParams(localObject);
-        pullToZoomScrollViewEx.setHeaderView(headView);
-        pullToZoomScrollViewEx.setZoomView(zoomView);
-        pullToZoomScrollViewEx.setScrollContentView(contentView);
+                .setCenterTitleColor(R.color.defult_text_color)
+                .setLeftText(R.string.add_friends)
+                .setLeftTextColor(R.color.defult_text_color)
+                .setRightText("设置").setRightTextColor(R.color.defult_text_color);
 
     }
 
