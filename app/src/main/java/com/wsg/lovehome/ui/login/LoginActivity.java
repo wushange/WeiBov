@@ -16,8 +16,11 @@ import com.sina.weibo.sdk.exception.WeiboException;
 import com.wsg.lovehome.MainActivity;
 import com.wsg.lovehome.R;
 import com.wsg.lovehome.base.BaseActivity;
+import com.wsg.lovehome.base.BaseEvents;
 import com.wsg.lovehome.util.AccessTokenKeeper;
 import com.wsg.lovehome.util.Contanst;
+
+import org.greenrobot.eventbus.EventBus;
 
 import javax.inject.Inject;
 
@@ -74,6 +77,8 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
                 Oauth2AccessToken mAccessToken = Oauth2AccessToken.parseAccessToken(bundle);
                 if (mAccessToken.isSessionValid()) {
                     Logger.e(mAccessToken.toString());
+                    BaseEvents.CommonEvent commonEvent = BaseEvents.CommonEvent.LOGIN_STATUS;
+                    EventBus.getDefault().postSticky(commonEvent);
                     // 保存 Token 到 SharedPreferences
                     AccessTokenKeeper.writeAccessToken(getContext(), mAccessToken);
                     finish();

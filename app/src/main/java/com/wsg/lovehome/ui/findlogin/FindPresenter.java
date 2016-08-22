@@ -1,4 +1,4 @@
-package com.wsg.lovehome.ui.find;
+package com.wsg.lovehome.ui.findlogin;
 
 import android.util.Log;
 

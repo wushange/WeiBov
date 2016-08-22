@@ -4,12 +4,12 @@ package com.wsg.lovehome;
 import com.wsg.lovehome.injector.PerActivity;
 import com.wsg.lovehome.injector.component.ApplicationComponent;
 import com.wsg.lovehome.injector.module.ActivityModule;
-import com.wsg.lovehome.ui.find.FindFragment;
+import com.wsg.lovehome.ui.findlogin.FindFragment;
 import com.wsg.lovehome.ui.findunlogin.FindUnLoginFragment;
-import com.wsg.lovehome.ui.home.HomeFragment;
+import com.wsg.lovehome.ui.homelogin.HomeFragment;
 import com.wsg.lovehome.ui.homeunlogin.HomeUnLoginFragment;
-import com.wsg.lovehome.ui.me.MeFragment;
-import com.wsg.lovehome.ui.message.MessageFragment;
+import com.wsg.lovehome.ui.melogin.MeFragment;
+import com.wsg.lovehome.ui.messagelogin.MessageFragment;
 import com.wsg.lovehome.ui.messageunlogin.MessageUnLoginFragment;
 import com.wsg.lovehome.ui.meunlogin.MeUnLoginFragment;
 

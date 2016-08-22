@@ -1,4 +1,4 @@
-package com.wsg.lovehome.ui.me;
+package com.wsg.lovehome.ui.melogin;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -21,7 +21,7 @@ public class MeFragment extends BaseFragmentV4 {
 
     @Override
     public int bindLayout() {
-        return R.layout.fragment_me_main_view;
+        return R.layout.fragment_me_login_view;
     }
 
     @Override

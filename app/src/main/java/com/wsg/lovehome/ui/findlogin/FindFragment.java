@@ -1,4 +1,4 @@
-package com.wsg.lovehome.ui.find;
+package com.wsg.lovehome.ui.findlogin;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -16,7 +16,6 @@ import com.wsg.lovehome.ui.hotweibo.HotWeiBoFragment;
 import com.wsg.lovehome.ui.hotweibo.StarWeiBoFragment;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -43,7 +42,7 @@ public class FindFragment extends BaseFragmentV4 implements FindContract.View {
 
     @Override
     public int bindLayout() {
-        return R.layout.fragment_find_main_view;
+        return R.layout.fragment_find_login_view;
     }
 
     @Override
@@ -59,7 +58,9 @@ public class FindFragment extends BaseFragmentV4 implements FindContract.View {
     @Override
     public void initView(View view) {
         presenter.attachView(this);
-
+        presenter.getPublicWeiBo();
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -76,11 +77,7 @@ public class FindFragment extends BaseFragmentV4 implements FindContract.View {
 
     @Override
     public void lazyInitBusiness(Context mContext) {
-        Logger.e("lazyInitBusiness");
-        presenter.getPublicWeiBo();
-        setupViewPager(viewPager);
-        tabLayout.setupWithViewPager(viewPager);
-        new Date().getTime();
+
 
     }
 

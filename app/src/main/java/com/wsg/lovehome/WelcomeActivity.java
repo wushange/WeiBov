@@ -16,7 +16,6 @@ import com.mylhyl.acp.AcpListener;
 import com.mylhyl.acp.AcpOptions;
 import com.orhanobut.logger.Logger;
 import com.wsg.lovehome.base.BaseActivity;
-import com.wsg.lovehome.ui.login.LoginActivity;
 import com.wsg.lovehome.util.Contanst;
 import com.wsg.lovehome.util.ShareUtils;
 
@@ -133,7 +132,7 @@ public class WelcomeActivity extends BaseActivity {
                 // TODO Auto-generated method stub
                 Logger.e("欢迎页播放完成!");
 
-                Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }
@@ -160,7 +159,7 @@ public class WelcomeActivity extends BaseActivity {
             @Override
             public void onClick(View arg0) {
                 // TODO Auto-generated method stub
-                Intent intent = new Intent(WelcomeActivity.this, LoginActivity.class);
+                Intent intent = new Intent(WelcomeActivity.this, MainActivity.class);
                 startActivity(intent);
                 finish();
             }

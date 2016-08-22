@@ -1,4 +1,4 @@
-package com.wsg.lovehome.ui.message;
+package com.wsg.lovehome.ui.messagelogin;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -28,7 +28,7 @@ public class MessageFragment extends BaseFragmentV4 {
 
     @Override
     public int bindLayout() {
-        return R.layout.fragment_message_main_view;
+        return R.layout.fragment_message_login_view;
     }
 
     @Override

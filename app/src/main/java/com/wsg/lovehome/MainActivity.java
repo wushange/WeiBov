@@ -1,5 +1,6 @@
 package com.wsg.lovehome;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -15,21 +16,20 @@ import com.shizhefei.view.indicator.FixedIndicatorView;
 import com.shizhefei.view.indicator.IndicatorViewPager;
 import com.shizhefei.view.indicator.transition.OnTransitionTextListener;
 import com.shizhefei.view.viewpager.SViewPager;
+import com.wsg.lovehome.base.BaseEvents;
 import com.wsg.lovehome.base.BaseFragmentV4;
 import com.wsg.lovehome.injector.HasComponent;
 import com.wsg.lovehome.injector.component.ApplicationComponent;
 import com.wsg.lovehome.injector.module.ActivityModule;
-import com.wsg.lovehome.ui.find.FindFragment;
-import com.wsg.lovehome.ui.findunlogin.FindUnLoginFragment;
-import com.wsg.lovehome.ui.home.HomeFragment;
-import com.wsg.lovehome.ui.homeunlogin.HomeUnLoginFragment;
-import com.wsg.lovehome.ui.me.MeFragment;
-import com.wsg.lovehome.ui.message.MessageFragment;
-import com.wsg.lovehome.ui.messageunlogin.MessageUnLoginFragment;
-import com.wsg.lovehome.ui.meunlogin.MeUnLoginFragment;
-import com.wsg.lovehome.util.AccessTokenKeeper;
+import com.wsg.lovehome.ui.FindFragement_Main;
+import com.wsg.lovehome.ui.HomeFragement_Main;
+import com.wsg.lovehome.ui.MeFragement_Main;
+import com.wsg.lovehome.ui.MessageFragement_Main;
 import com.wsg.lovehome.util.StatusBarUtil;
 import com.wsg.lovehome.widget.MoreWindow;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,13 +52,12 @@ public class MainActivity extends AppCompatActivity implements HasComponent<Main
     @Override
     protected void onCreate(Bundle arg0) {
         super.onCreate(arg0);
-
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
         StatusBarUtil.setStatusBarTextColor(this, true);
         initInjector();
         indicator.setOnTransitionListener(new OnTransitionTextListener().setColor(Color.parseColor("#FF8200"), Color.GRAY));
-        //这里可以添加一个view，作为centerView，会位于Indicator的tab的中间
         centerView = getLayoutInflater().inflate(R.layout.tab_main_center, indicator, false);
         indicator.setCenterView(centerView);
         centerView.setOnClickListener(onClickListener);
@@ -68,32 +67,27 @@ public class MainActivity extends AppCompatActivity implements HasComponent<Main
     }
 
     private void initFragments() {
-        if (AccessTokenKeeper.readAccessToken(this).isSessionValid()) {
-            Logger.e("登陆状态");
-            HomeFragment homeFragment = new HomeFragment();
-            MessageFragment messageFragment = new MessageFragment();
-            FindFragment findFragment = new FindFragment();
-            MeFragment meFragment = new MeFragment();
-            fragmentV4s.add(homeFragment);
-            fragmentV4s.add(messageFragment);
-            fragmentV4s.add(findFragment);
-            fragmentV4s.add(meFragment);
-        } else {
-            Logger.e("游客状态");
-            HomeUnLoginFragment homeFragment = new HomeUnLoginFragment();
-            MessageUnLoginFragment messageFragment = new MessageUnLoginFragment();
-            FindUnLoginFragment findUnLoginFragment = new FindUnLoginFragment();
-            MeUnLoginFragment meFragment = new MeUnLoginFragment();
-            fragmentV4s.add(homeFragment);
-            fragmentV4s.add(messageFragment);
-            fragmentV4s.add(findUnLoginFragment);
-            fragmentV4s.add(meFragment);
-
-        }
+        HomeFragement_Main homeFragment = new HomeFragement_Main();
+        MessageFragement_Main messageFragment = new MessageFragement_Main();
+        FindFragement_Main findFragment = new FindFragement_Main();
+        MeFragement_Main meFragment = new MeFragement_Main();
+        fragmentV4s.clear();
+        fragmentV4s.add(homeFragment);
+        fragmentV4s.add(messageFragment);
+        fragmentV4s.add(findFragment);
+        fragmentV4s.add(meFragment);
         indicatorViewPager = new IndicatorViewPager(indicator, viewPager);
         indicatorViewPager.setAdapter(new MyAdapter(getSupportFragmentManager()));
         viewPager.setCanScroll(false);
         viewPager.setOffscreenPageLimit(4);
+    }
+
+    @Subscribe
+    public void changeStatus(BaseEvents.CommonEvent commonEvent) {
+        if (commonEvent == BaseEvents.CommonEvent.LOGIN_STATUS) {
+            Logger.e("changeStatus" + "main");reload();
+        }
+
     }
 
     public void initInjector() {
@@ -153,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements HasComponent<Main
         public Fragment getFragmentForPage(int position) {
             return fragmentV4s.get(position);
         }
+
     }
 
     protected ApplicationComponent getApplicationComponent() {
@@ -167,4 +162,14 @@ public class MainActivity extends AppCompatActivity implements HasComponent<Main
     public MainComponent getComponent() {
         return mMainComponent;
     }
+
+    public void reload() {
+        Intent intent = getIntent();
+        overridePendingTransition(0, 0);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(intent);
+    }
+
 }

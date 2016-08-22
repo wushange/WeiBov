@@ -16,7 +16,6 @@ import com.wsg.lovehome.ui.hotweibo.HotWeiBoFragment;
 import com.wsg.lovehome.ui.hotweibo.StarWeiBoFragment;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -58,7 +57,9 @@ public class FindUnLoginFragment extends BaseFragmentV4 implements FindUnLoginCo
     @Override
     public void initView(View view) {
         presenter.attachView(this);
-
+        presenter.getPublicWeiBo();
+        setupViewPager(viewPager);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     @Override
@@ -75,11 +76,7 @@ public class FindUnLoginFragment extends BaseFragmentV4 implements FindUnLoginCo
 
     @Override
     public void lazyInitBusiness(Context mContext) {
-        Logger.e("lazyInitBusiness");
-        presenter.getPublicWeiBo();
-        setupViewPager(viewPager);
-        tabLayout.setupWithViewPager(viewPager);
-        new Date().getTime();
+
 
     }
 
