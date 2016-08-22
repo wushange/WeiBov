@@ -23,7 +23,7 @@ import com.wsg.lovehome.injector.component.ApplicationComponent;
 import com.wsg.lovehome.injector.module.ActivityModule;
 import com.wsg.lovehome.ui.FindFragement_Main;
 import com.wsg.lovehome.ui.HomeFragement_Main;
-import com.wsg.lovehome.ui.MeFragement_Main;
+import com.wsg.lovehome.ui.MineFragement_Main;
 import com.wsg.lovehome.ui.MessageFragement_Main;
 import com.wsg.lovehome.util.StatusBarUtil;
 import com.wsg.lovehome.widget.MoreWindow;
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements HasComponent<Main
         HomeFragement_Main homeFragment = new HomeFragement_Main();
         MessageFragement_Main messageFragment = new MessageFragement_Main();
         FindFragement_Main findFragment = new FindFragement_Main();
-        MeFragement_Main meFragment = new MeFragement_Main();
+        MineFragement_Main meFragment = new MineFragement_Main();
         fragmentV4s.clear();
         fragmentV4s.add(homeFragment);
         fragmentV4s.add(messageFragment);

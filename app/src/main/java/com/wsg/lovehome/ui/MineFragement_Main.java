@@ -15,7 +15,7 @@ import com.wsg.lovehome.util.AccessTokenKeeper;
 /**
  * Created by wushange on 2016/08/22.
  */
-public class MeFragement_Main extends BaseFragmentV4 {
+public class MineFragement_Main extends BaseFragmentV4 {
     private FragmentManager fm;
 
     @Override
@@ -44,7 +44,7 @@ public class MeFragement_Main extends BaseFragmentV4 {
 
     @Override
     public void doBusiness(Context mContext) {
-        Logger.e("doBusiness==" + getContext().getClass().getSimpleName());
+         Logger.e("doBusiness==" + getContext().getClass().getSimpleName());
     }
 
     @Override
