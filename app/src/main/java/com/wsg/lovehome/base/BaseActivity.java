@@ -79,7 +79,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     protected abstract boolean isEnableSwipBack();
 
 
-
     protected ApplicationComponent getApplicationComponent() {
         return ((MyApplication) getApplication()).getApplicationComponent();
     }

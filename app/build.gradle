@@ -70,6 +70,8 @@ dependencies {
     compile 'de.hdodenhof:circleimageview:2.1.0'
     //拉伸缩放view
     compile 'com.github.frank-zhu:pullzoomview:1.0.0'
+    //切换开关
+    compile 'com.kyleduo.switchbutton:library:1.4.4'
     //内存检测
     debugCompile 'com.squareup.leakcanary:leakcanary-android:1.4-beta2'
     releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.4-beta2'
