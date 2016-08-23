@@ -19,8 +19,6 @@ import butterknife.BindView;
  * Created by wushange on 2016/05/31.
  */
 public class MeUnLoginFragment extends BaseFragmentV4 {
-    @BindView(R.id.apptitle)
-    AppTitle appTitle;
 
     @BindView(R.id.pzs_me_view)
     PullToZoomScrollViewEx pullToZoomScrollViewEx;
@@ -41,9 +39,7 @@ public class MeUnLoginFragment extends BaseFragmentV4 {
 
     @Override
     public void initView(View view) {
-        appTitle.setCenterTitle("我")
-                .setCenterTitleColor(R.color.black_deep)
-                .setRightText("设置").setRightTextColor(R.color.black_deep);
+
         View headView = LayoutInflater.from(getContext()).inflate(R.layout.me_defult_headview, null, false);
         View zoomView = LayoutInflater.from(getContext()).inflate(R.layout.me_defult_zoomview, null, false);
         View contentView = LayoutInflater.from(getContext()).inflate(R.layout.me_defult_contentview, null, false);

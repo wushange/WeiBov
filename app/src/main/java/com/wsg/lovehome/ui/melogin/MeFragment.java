@@ -15,8 +15,6 @@ import butterknife.BindView;
  * Created by wushange on 2016/05/31.
  */
 public class MeFragment extends BaseFragmentV4 {
-    @BindView(R.id.apptitle)
-    AppTitle appTitle;
 
 
     @Override
@@ -35,11 +33,7 @@ public class MeFragment extends BaseFragmentV4 {
 
     @Override
     public void initView(View view) {
-        appTitle.setCenterTitle("我")
-                .setCenterTitleColor(R.color.defult_text_color)
-                .setLeftText(R.string.add_friends)
-                .setLeftTextColor(R.color.defult_text_color)
-                .setRightText("设置").setRightTextColor(R.color.defult_text_color);
+
 
     }
 

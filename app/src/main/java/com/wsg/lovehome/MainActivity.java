@@ -85,7 +85,8 @@ public class MainActivity extends AppCompatActivity implements HasComponent<Main
     @Subscribe
     public void changeStatus(BaseEvents.CommonEvent commonEvent) {
         if (commonEvent == BaseEvents.CommonEvent.LOGIN_STATUS) {
-            Logger.e("changeStatus" + "main");reload();
+            Logger.e("changeStatus" + "main");
+            reload();
         }
 
     }

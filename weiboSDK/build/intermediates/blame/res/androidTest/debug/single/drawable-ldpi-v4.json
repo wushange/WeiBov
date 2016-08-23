@@ -1,5 +1,13 @@
 [
     {
+        "merged": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_with_account_text_normal.png",
+        "source": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_with_account_text_normal.png"
+    },
+    {
+        "merged": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_button_with_frame_logo_pressed.png",
+        "source": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_button_with_frame_logo_pressed.png"
+    },
+    {
         "merged": "D:\\develop_workspace\\as_workspace\\LoveHome\\weiboSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_button_with_frame_logo_normal.png",
         "source": "D:\\develop_workspace\\as_workspace\\LoveHome\\weiboSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_button_with_frame_logo_normal.png"
     },
@@ -12,20 +20,44 @@
         "source": "D:\\develop_workspace\\as_workspace\\LoveHome\\weiboSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_with_account_text_focused.png"
     },
     {
+        "merged": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_with_account_text_focused.png",
+        "source": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_with_account_text_focused.png"
+    },
+    {
+        "merged": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_button_with_frame_logo_focused.png",
+        "source": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_button_with_frame_logo_focused.png"
+    },
+    {
         "merged": "D:\\develop_workspace\\as_workspace\\LoveHome\\weiboSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_with_account_text_pressed.png",
         "source": "D:\\develop_workspace\\as_workspace\\LoveHome\\weiboSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_with_account_text_pressed.png"
+    },
+    {
+        "merged": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_button_with_frame_logo_normal.png",
+        "source": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_button_with_frame_logo_normal.png"
     },
     {
         "merged": "D:\\develop_workspace\\as_workspace\\LoveHome\\weiboSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_button_with_frame_logo_focused.png",
         "source": "D:\\develop_workspace\\as_workspace\\LoveHome\\weiboSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_button_with_frame_logo_focused.png"
     },
     {
+        "merged": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_logo.png",
+        "source": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_logo.png"
+    },
+    {
         "merged": "D:\\develop_workspace\\as_workspace\\LoveHome\\weiboSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_button_with_frame_logo_pressed.png",
         "source": "D:\\develop_workspace\\as_workspace\\LoveHome\\weiboSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_button_with_frame_logo_pressed.png"
     },
     {
+        "merged": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_with_account_text_pressed.png",
+        "source": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_with_account_text_pressed.png"
+    },
+    {
         "merged": "D:\\develop_workspace\\as_workspace\\LoveHome\\weiboSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_with_text.png",
         "source": "D:\\develop_workspace\\as_workspace\\LoveHome\\weiboSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_with_text.png"
+    },
+    {
+        "merged": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_with_text.png",
+        "source": "D:\\dmcc_workspace\\WeiBov\\weiboSDK\\build\\intermediates\\bundles\\debug\\res\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_with_text.png"
     },
     {
         "merged": "D:\\develop_workspace\\as_workspace\\LoveHome\\weiboSDK\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-ldpi-v4\\ic_com_sina_weibo_sdk_login_with_account_text_normal.png",
