@@ -1,6 +1,7 @@
 package com.wsg.lovehome.api;
 
-import retrofit2.Response;
+import com.wsg.lovehome.bean.WeiBoResult;
+
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import rx.Observable;
@@ -15,5 +16,5 @@ public interface WeiBoService {
 
 
     @GET("statuses/public_timeline.json")
-    Observable<Response<String>> getPublicWeiBo(@Query("access_token") String client_id,@Query("count")int count);
+    Observable<WeiBoResult> getPublicWeiBo(@Query("access_token") String client_id, @Query("count") int c,@Query("page") int page );
 }

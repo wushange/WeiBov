@@ -58,7 +58,6 @@ public class FindFragment extends BaseFragmentV4 implements FindContract.View {
     @Override
     public void initView(View view) {
         presenter.attachView(this);
-        presenter.getPublicWeiBo();
         setupViewPager(viewPager);
         tabLayout.setupWithViewPager(viewPager);
     }

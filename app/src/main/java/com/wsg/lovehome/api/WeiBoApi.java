@@ -3,12 +3,12 @@ package com.wsg.lovehome.api;
 
 import android.content.Context;
 
+import com.wsg.lovehome.bean.WeiBoResult;
 import com.wsg.lovehome.components.retrofit.RequestHelper;
 import com.wsg.lovehome.util.AccessTokenKeeper;
 import com.wushange.converterfastjson.FastjsonConverterFactory;
 
 import okhttp3.OkHttpClient;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import rx.Observable;
@@ -34,13 +34,13 @@ public class WeiBoApi {
                 new Retrofit.Builder()
                         .client(mOkHttpClient)
                         .baseUrl(BASE_URL)
-                        .addConverterFactory(FastjsonConverterFactory.create())
                         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                        .addConverterFactory(FastjsonConverterFactory.create())
                         .build();
         mWeiBoService = retrofit.create(WeiBoService.class);
     }
 
-    public Observable<Response<String>> getPublicWeiBo() {
-        return mWeiBoService.getPublicWeiBo(AccessTokenKeeper.readAccessToken(mContext).getToken(),1).subscribeOn(Schedulers.io());
+    public Observable<WeiBoResult> getPublicWeiBo(int page) {
+        return mWeiBoService.getPublicWeiBo(AccessTokenKeeper.readAccessToken(mContext).getToken(),20,page).subscribeOn(Schedulers.io());
     }
 }

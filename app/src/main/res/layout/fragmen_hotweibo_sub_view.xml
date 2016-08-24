@@ -5,7 +5,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <include layout="@layout/empty_home_layout" />
+
+    <com.jude.easyrecyclerview.EasyRecyclerView
+        android:id="@+id/hotwb_recycylerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_progress="@layout/view_progress"
+        app:scrollbars="none" />
 
 
 </LinearLayout>

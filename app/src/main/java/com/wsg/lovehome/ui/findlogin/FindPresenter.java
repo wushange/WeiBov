@@ -1,17 +1,10 @@
 package com.wsg.lovehome.ui.findlogin;
 
-import android.util.Log;
-
-import com.orhanobut.logger.Logger;
 import com.wsg.lovehome.api.WeiBoApi;
 import com.wsg.lovehome.base.BasePresenter;
 import com.wsg.lovehome.injector.PerActivity;
 
 import javax.inject.Inject;
-
-import retrofit2.Response;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
 
 /**
  * Created by wushange on 2016/08/19.
@@ -28,20 +21,24 @@ public class FindPresenter extends BasePresenter<FindContract.View> implements F
 
     @Override
     public void getPublicWeiBo() {
-        mSubscription = mWeiBoApi.getPublicWeiBo().observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Response<String>>() {
-            @Override
-            public void call(Response<String> stringResponse) {
-                Logger.json(stringResponse.body());
-                Log.e("WUSHANGE", stringResponse.body());
-                mView.showList();
-
-            }
-        }, new Action1<Throwable>() {
-            @Override
-            public void call(Throwable throwable) {
-
-            }
-        });
+//        mSubscription = mWeiBoApi.getPublicWeiBo().observeOn(AndroidSchedulers.mainThread()).subscribe(new Action1<Response<WeiBoBean>>() {
+//            @Override
+//            public void call(Response< WeiBoBean> stringResponse) {
+////                Log.e("WUSHANGE", stringResponse.body());
+//                List<WeiBoBean> weiBoBeanList = new ArrayList<WeiBoBean>();
+////                weiBoBeanList = JSON.parseArray(stringResponse.body(), WeiBoBean.class);
+////                Logger.e("解析后的集合" + weiBoBeanList.size());
+//                Logger.e("解析到" + stringResponse.body() );
+//                mView.hideLoading();
+//
+//            }
+//        }, new Action1<Throwable>() {
+//            @Override
+//            public void call(Throwable throwable) {
+//                Logger.e("请求错误" + throwable.getMessage().toString());
+//                mView.hideLoading();
+//            }
+//        });
 
 
     }

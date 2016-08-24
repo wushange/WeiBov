@@ -23,8 +23,8 @@ import com.wsg.lovehome.injector.component.ApplicationComponent;
 import com.wsg.lovehome.injector.module.ActivityModule;
 import com.wsg.lovehome.ui.FindFragement_Main;
 import com.wsg.lovehome.ui.HomeFragement_Main;
-import com.wsg.lovehome.ui.MineFragement_Main;
 import com.wsg.lovehome.ui.MessageFragement_Main;
+import com.wsg.lovehome.ui.MineFragement_Main;
 import com.wsg.lovehome.util.StatusBarUtil;
 import com.wsg.lovehome.widget.MoreWindow;
 
@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements HasComponent<Main
     FixedIndicatorView indicator;
     @BindView(R.id.tabmain_viewPager)
     SViewPager viewPager;
+
 
     List<BaseFragmentV4> fragmentV4s = new ArrayList<>();
     private MainComponent mMainComponent;
@@ -101,7 +102,6 @@ public class MainActivity extends AppCompatActivity implements HasComponent<Main
 
     @Override
     protected void onResume() {
-        initFragments();
         super.onResume();
     }
 

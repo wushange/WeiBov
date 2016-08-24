@@ -8,6 +8,8 @@ import com.wsg.lovehome.ui.findlogin.FindFragment;
 import com.wsg.lovehome.ui.findunlogin.FindUnLoginFragment;
 import com.wsg.lovehome.ui.homelogin.HomeFragment;
 import com.wsg.lovehome.ui.homeunlogin.HomeUnLoginFragment;
+import com.wsg.lovehome.ui.hotweibo.HotWeiBoFragment;
+import com.wsg.lovehome.ui.hotweibo.StarWeiBoFragment;
 import com.wsg.lovehome.ui.melogin.MeFragment;
 import com.wsg.lovehome.ui.messagelogin.MessageFragment;
 import com.wsg.lovehome.ui.messageunlogin.MessageUnLoginFragment;
@@ -37,6 +39,10 @@ public interface MainComponent {
     void inject(FindFragment fragment);
 
     void inject(FindUnLoginFragment fragment);
+
+    void inject(HotWeiBoFragment fragment);
+
+    void inject(StarWeiBoFragment fragment);
 
     void inject(MeFragment fragment);
 

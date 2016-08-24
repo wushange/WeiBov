@@ -537,10 +537,10 @@ public class Operation {
 
 
     public void dissLoading() {
-        if (mSweetAlertDialog != null && mSweetAlertDialog.isShowing()) {
+        if (!mContext.isFinishing() &&mSweetAlertDialog != null && mSweetAlertDialog.isShowing()) {
             mSweetAlertDialog.dismissWithAnimation();
         }
-        if (dialog != null && dialog.isShowing()) {
+        if (!mContext.isFinishing() &&dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }
 
