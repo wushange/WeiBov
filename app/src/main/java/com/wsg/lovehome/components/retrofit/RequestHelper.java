@@ -5,10 +5,10 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 
 import com.wsg.lovehome.components.storage.UserStorage;
+import com.wsg.lovehome.util.AccessTokenKeeper;
 import com.wsg.lovehome.util.SecurityUtils;
 import com.wsg.lovehome.util.SettingPrefUtils;
 
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -30,15 +30,7 @@ public class RequestHelper {
 
   public Map<String, String> getHttpRequestMap() {
     HashMap<String, String> map = new HashMap<String, String>();
-    map.put("client", getDeviceId());
-    map.put("night", SettingPrefUtils.getNightModel(mContext) ? "1" : "0");
-    if (mUserStorage.isLogin()) {
-      try {
-        map.put("token", URLEncoder.encode(mUserStorage.getToken(), "UTF-8"));
-      } catch (Exception e) {
-        e.printStackTrace();
-      }
-    }
+    map.put("access_token", AccessTokenKeeper.readAccessToken(mContext).getToken());
     return map;
   }
 

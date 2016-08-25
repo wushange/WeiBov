@@ -435,7 +435,7 @@ public class Operation {
      * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
      */
     public void showSweetBasic(String str) {
-        if (mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
+        if (!mContext.isFinishing() && mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
             mSweetAlertDialog.dismissWithAnimation();
         mSweetAlertDialog = new SweetAlertDialog(mContext);
         mSweetAlertDialog.setTitleText(str);
@@ -445,7 +445,7 @@ public class Operation {
     }
 
     public void showSweetSub(String str, String subStr) {
-        if (mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
+        if (!mContext.isFinishing() && mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
             mSweetAlertDialog.dismissWithAnimation();
         mSweetAlertDialog = new SweetAlertDialog(mContext);
         mSweetAlertDialog.setTitleText(str);
@@ -456,7 +456,7 @@ public class Operation {
     }
 
     public void showSweetLoading(boolean cancel) {
-        if (mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
+        if (!mContext.isFinishing() && mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
             mSweetAlertDialog.dismissWithAnimation();
         mSweetAlertDialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE)
                 .setTitleText(mContext.getResources().getString(R.string.loading));
@@ -465,7 +465,7 @@ public class Operation {
     }
 
     public void showSweetLoading(String str) {
-        if (mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
+        if (!mContext.isFinishing() && mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
             mSweetAlertDialog.dismissWithAnimation();
         mSweetAlertDialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE)
                 .setTitleText(str);
@@ -474,7 +474,7 @@ public class Operation {
     }
 
     public void showSweetLoadingCanCancel(String str) {
-        if (mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
+        if (!mContext.isFinishing() && mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
             mSweetAlertDialog.dismissWithAnimation();
         mSweetAlertDialog = new SweetAlertDialog(mContext, SweetAlertDialog.PROGRESS_TYPE)
                 .setTitleText(str);
@@ -483,7 +483,7 @@ public class Operation {
     }
 
     public void showSweetSuccess(String title, String content) {
-        if (mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
+        if (!mContext.isFinishing() && mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
             mSweetAlertDialog.dismissWithAnimation();
         mSweetAlertDialog = new SweetAlertDialog(mContext, SweetAlertDialog.SUCCESS_TYPE);
         mSweetAlertDialog.setTitleText(title);
@@ -492,7 +492,7 @@ public class Operation {
     }
 
     public void showSweetSuccess(String title, String content, SweetAlertDialog.OnSweetClickListener successCallBack) {
-        if (mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
+        if (!mContext.isFinishing() && mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
             mSweetAlertDialog.dismissWithAnimation();
         mSweetAlertDialog = new SweetAlertDialog(mContext, SweetAlertDialog.SUCCESS_TYPE);
         mSweetAlertDialog.setTitleText(title);
@@ -502,7 +502,7 @@ public class Operation {
     }
 
     public void showSweetError(String title, String content) {
-        if (mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
+        if (!mContext.isFinishing() && mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
             mSweetAlertDialog.dismissWithAnimation();
         mSweetAlertDialog = new SweetAlertDialog(mContext, SweetAlertDialog.ERROR_TYPE);
         mSweetAlertDialog.setTitleText(title);
@@ -512,7 +512,7 @@ public class Operation {
 
 
     public void showSweet2Btn(String title, String content, String canceltext, String confirmText, SweetAlertDialog.OnSweetClickListener cancelCallback, SweetAlertDialog.OnSweetClickListener confirmCallback) {
-        if (mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
+        if (!mContext.isFinishing() && mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
             mSweetAlertDialog.dismissWithAnimation();
         mSweetAlertDialog = new SweetAlertDialog(mContext, SweetAlertDialog.WARNING_TYPE);
         mSweetAlertDialog.setTitleText(title);
@@ -526,7 +526,7 @@ public class Operation {
     }
 
     public void showSweetCustom(String title, String content, int resId) {
-        if (mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
+        if (!mContext.isFinishing() && mSweetAlertDialog != null && mSweetAlertDialog.isShowing())
             mSweetAlertDialog.dismissWithAnimation();
         mSweetAlertDialog = new SweetAlertDialog(mContext, SweetAlertDialog.CUSTOM_IMAGE_TYPE);
         mSweetAlertDialog.setTitleText(title);
@@ -537,10 +537,10 @@ public class Operation {
 
 
     public void dissLoading() {
-        if (!mContext.isFinishing() &&mSweetAlertDialog != null && mSweetAlertDialog.isShowing()) {
+        if (!mContext.isFinishing() && mSweetAlertDialog != null && mSweetAlertDialog.isShowing()) {
             mSweetAlertDialog.dismissWithAnimation();
         }
-        if (!mContext.isFinishing() &&dialog != null && dialog.isShowing()) {
+        if (!mContext.isFinishing() && dialog != null && dialog.isShowing()) {
             dialog.dismiss();
         }
 

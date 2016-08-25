@@ -9,6 +9,7 @@ import com.wsg.lovehome.util.AccessTokenKeeper;
 import com.wushange.converterfastjson.FastjsonConverterFactory;
 
 import okhttp3.OkHttpClient;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import rx.Observable;
@@ -41,6 +42,11 @@ public class WeiBoApi {
     }
 
     public Observable<WeiBoResult> getPublicWeiBo(int page) {
-        return mWeiBoService.getPublicWeiBo(AccessTokenKeeper.readAccessToken(mContext).getToken(),20,page).subscribeOn(Schedulers.io());
+        return mWeiBoService.getPublicWeiBo(AccessTokenKeeper.readAccessToken(mContext).getToken(), 20, page).subscribeOn(Schedulers.io());
+    }
+
+    public Observable<Response<String>> getHomeWeiBo(int page) {
+        return mWeiBoService.getHomeWeiBo(AccessTokenKeeper.readAccessToken(mContext).getToken(),20, page).subscribeOn(Schedulers.io());
+
     }
 }

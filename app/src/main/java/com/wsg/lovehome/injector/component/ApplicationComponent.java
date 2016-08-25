@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.wsg.lovehome.MyApplication;
 import com.wsg.lovehome.api.AccountApi;
+import com.wsg.lovehome.api.UserApi;
 import com.wsg.lovehome.api.WeiBoApi;
 import com.wsg.lovehome.base.BaseActivity;
 import com.wsg.lovehome.components.okhttp.OkHttpHelper;
@@ -33,6 +34,7 @@ public interface ApplicationComponent {
 
     WeiBoApi getWeiBoApi();
 
+    UserApi getUserApi();
     UserDao getUserDao();
 
     ForumDao getForumDao();

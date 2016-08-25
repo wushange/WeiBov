@@ -3,6 +3,7 @@ package com.wsg.lovehome.injector.module;
 import android.content.Context;
 
 import com.wsg.lovehome.api.AccountApi;
+import com.wsg.lovehome.api.UserApi;
 import com.wsg.lovehome.api.WeiBoApi;
 import com.wsg.lovehome.components.retrofit.RequestHelper;
 
@@ -30,5 +31,12 @@ public class ApiModule {
     @Singleton
     public WeiBoApi provideWeiBoApi(Context mContext, RequestHelper requestHelper, @Named("api") OkHttpClient okHttpClient) {
         return new WeiBoApi(mContext, requestHelper, okHttpClient);
+    }
+
+
+    @Provides
+    @Singleton
+    public UserApi provideUserApi(Context mContext,RequestHelper requestHelper,@Named("api")OkHttpClient okHttpClient){
+        return  new UserApi(mContext,requestHelper,okHttpClient);
     }
 }

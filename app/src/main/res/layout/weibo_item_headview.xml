@@ -15,19 +15,19 @@
             android:layout_marginLeft="10dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/item_img_avator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:src="@mipmap/avator_default"
-                android:id="@+id/item_img_avator" />
+                android:src="@mipmap/avator_default" />
 
             <ImageView
+                android:id="@+id/item_img_small_avator"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:src="@mipmap/avatar_enterprise_vip"
-                android:id="@+id/item_img_small_avator" />
+                android:src="@mipmap/avatar_enterprise_vip" />
         </RelativeLayout>
 
         <LinearLayout
@@ -45,11 +45,11 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/item_tv_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="娱乐大V"
-                    android:textColor="@color/black_deep"
-                    android:id="@+id/item_tv_username" />
+                    android:textColor="@color/black_deep" />
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -67,17 +67,17 @@
 
 
                 <TextView
+                    android:id="@+id/item_tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="昨天 10:09"
-                    android:id="@+id/item_tv_time" />
+                    android:text="昨天 10:09" />
 
                 <TextView
+                    android:id="@+id/item_tv_fromtype"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="来自 ipone7"
-                    android:id="@+id/item_tv_fromtype" />
+                    android:text="来自 ipone7" />
             </LinearLayout>
 
 
@@ -85,6 +85,8 @@
 
 
         <Button
+            android:id="@+id/iem_btn_tofollow"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="60dp"
             android:layout_height="30dp"
             android:layout_alignParentRight="true"
@@ -93,7 +95,6 @@
             android:background="@drawable/white_button_shap"
             android:text="+关注"
             android:textColor="@color/appSubThemeColor"
-            android:textSize="@dimen/text_size_16"
-            android:id="@+id/iem_btn_tofollow" />
+            android:textSize="@dimen/text_size_16" />
     </RelativeLayout>
 </merge>

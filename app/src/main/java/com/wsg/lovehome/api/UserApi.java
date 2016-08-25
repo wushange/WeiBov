@@ -1,29 +1,31 @@
 package com.wsg.lovehome.api;
 
+import android.content.Context;
 
+import com.wsg.lovehome.bean.UserBean;
 import com.wsg.lovehome.components.retrofit.RequestHelper;
 import com.wushange.converterfastjson.FastjsonConverterFactory;
 
+import java.util.Map;
+
 import okhttp3.OkHttpClient;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import rx.Observable;
+import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
 /**
- * 接口定义
- *
- * @author wushange
- *         created at 2016/06/30 14:02
+ * Created by wushange on 2016/8/25.
  */
-public class AccountApi {
-
-    static final String BASE_URL = " https://api.weibo.com/";
-    private AccountService mAccountService;
+public class UserApi {
+    static final String BASE_URL = "https://api.weibo.com/2/";
+    private Context mContext;
+    private UserService mUserService;
     private RequestHelper mRequestHelper;
 
-    public AccountApi(RequestHelper mRequestHelper, OkHttpClient mOkHttpClient) {
+    public UserApi(Context context, RequestHelper mRequestHelper, OkHttpClient mOkHttpClient) {
+        this.mContext = context;
         this.mRequestHelper = mRequestHelper;
         Retrofit retrofit =
                 new Retrofit.Builder()
@@ -32,14 +34,11 @@ public class AccountApi {
                         .addConverterFactory(FastjsonConverterFactory.create())
                         .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                         .build();
-        mAccountService = retrofit.create(AccountService.class);
+        mUserService = retrofit.create(UserService.class);
     }
 
-    public Observable<Response<String>> login(String userName, String passWord) {
-        return mAccountService.login(userName, passWord).subscribeOn(Schedulers.io());
-    }
-
-    public Observable<Response<String>> login1(String userName, String passWord) {
-        return mAccountService.loadMovieList(0, 10).subscribeOn(Schedulers.io());
+    public Observable<UserBean> showUserInfo(String uid) {
+        Map<String, String> params = mRequestHelper.getHttpRequestMap();
+        return mUserService.showUserInfo(params, uid).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 }

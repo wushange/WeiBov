@@ -1,11 +1,9 @@
 package com.wsg.lovehome.ui.hotweibo;
 
 import android.content.Context;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.jude.easyrecyclerview.EasyRecyclerView;
@@ -14,6 +12,7 @@ import com.wsg.lovehome.MainComponent;
 import com.wsg.lovehome.R;
 import com.wsg.lovehome.base.BaseFragmentV4;
 import com.wsg.lovehome.bean.WeiBoResult;
+import com.wsg.lovehome.widget.SpaceItemDecoration;
 
 import javax.inject.Inject;
 
@@ -50,6 +49,8 @@ public class HotWeiBoFragment extends BaseFragmentV4 implements HotWeiBoContract
 
     @Override
     public void initParms(Bundle parms) {
+
+
 
     }
 
@@ -127,19 +128,5 @@ public class HotWeiBoFragment extends BaseFragmentV4 implements HotWeiBoContract
         page = 1;
     }
 
-    class SpaceItemDecoration extends RecyclerView.ItemDecoration {
 
-        private int space;
-
-        public SpaceItemDecoration(int space) {
-            this.space = space;
-        }
-
-        @Override
-        public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-
-            if (parent.getChildPosition(view) != 0)
-                outRect.top = space;
-        }
-    }
 }
