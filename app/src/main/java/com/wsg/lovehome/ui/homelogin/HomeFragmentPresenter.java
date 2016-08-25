@@ -2,7 +2,6 @@ package com.wsg.lovehome.ui.homelogin;
 
 import android.content.Context;
 
-import com.alibaba.fastjson.JSON;
 import com.orhanobut.logger.Logger;
 import com.wsg.lovehome.api.UserApi;
 import com.wsg.lovehome.api.WeiBoApi;
@@ -13,7 +12,6 @@ import com.wsg.lovehome.injector.PerActivity;
 
 import javax.inject.Inject;
 
-import retrofit2.Response;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -41,20 +39,11 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFrgmentContract.Vie
         mView.showLoading();
         mCompositeSubscription.add(weiBoApi.getHomeWeiBo(page)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<Response<String>>() {
+                .subscribe(new Action1<HomeWeiBo>() {
                     @Override
-                    public void call(Response<String> weiBoResult) {
-                        Logger.e("call" + weiBoResult.body().toString());
-                        try {
-                            HomeWeiBo homeWeiBo = JSON.parseObject(weiBoResult.body().toString(), HomeWeiBo.class);
-                            Logger.e("---" + homeWeiBo.getStatuses().size());
-
+                    public void call(HomeWeiBo weiBoResult) {
                             mView.hideLoading();
-                            mView.showWeiBoList(homeWeiBo);
-                        } catch (Exception e) {
-                            Logger.e("解析错误" + e.getMessage().toString());
-                            e.printStackTrace();
-                        }
+                            mView.showWeiBoList(weiBoResult);
 
                     }
                 }, new Action1<Throwable>() {

@@ -8,4 +8,6 @@
 
     <include layout="@layout/include_app_title" />
 
+
+    <include layout="@layout/easyrecycylerview"/>
 </LinearLayout>

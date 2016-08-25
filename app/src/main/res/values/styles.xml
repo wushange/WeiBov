@@ -25,6 +25,7 @@
         <item name="android:background">@drawable/view_defulte_color</item>
         <!--<item name="android:background">?android:attr/selectableItemBackground</item>-->
     </style>
+
     <style name="click_view_style">
         <item name="android:clickable">true</item>
         <item name="android:background">@drawable/view_defulte_color</item>
