@@ -2,7 +2,7 @@ package com.wsg.lovehome.api;
 
 import android.content.Context;
 
-import com.wsg.lovehome.bean.UserBean;
+import com.wsg.lovehome.bean.HomeWeiBo;
 import com.wsg.lovehome.components.retrofit.RequestHelper;
 import com.wushange.converterfastjson.FastjsonConverterFactory;
 
@@ -37,7 +37,7 @@ public class UserApi {
         mUserService = retrofit.create(UserService.class);
     }
 
-    public Observable<UserBean> showUserInfo(String uid) {
+    public Observable<HomeWeiBo.StatusesBean.UserBean> showUserInfo(String uid) {
         Map<String, String> params = mRequestHelper.getHttpRequestMap();
         return mUserService.showUserInfo(params, uid).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }

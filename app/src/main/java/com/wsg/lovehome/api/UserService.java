@@ -1,6 +1,6 @@
 package com.wsg.lovehome.api;
 
-import com.wsg.lovehome.bean.UserBean;
+import com.wsg.lovehome.bean.HomeWeiBo;
 
 import java.util.Map;
 
@@ -15,5 +15,5 @@ import rx.Observable;
 public interface UserService {
 
     @GET("users/show.json")
-    Observable<UserBean> showUserInfo(@QueryMap Map<String, String> params, @Query("uid") String uid);
+    Observable<HomeWeiBo.StatusesBean.UserBean> showUserInfo(@QueryMap Map<String, String> params, @Query("uid") String uid);
 }

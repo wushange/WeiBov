@@ -7,7 +7,6 @@ import com.wsg.lovehome.api.UserApi;
 import com.wsg.lovehome.api.WeiBoApi;
 import com.wsg.lovehome.base.BasePresenter;
 import com.wsg.lovehome.bean.HomeWeiBo;
-import com.wsg.lovehome.bean.UserBean;
 import com.wsg.lovehome.injector.PerActivity;
 
 import javax.inject.Inject;
@@ -60,7 +59,7 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFrgmentContract.Vie
     @Override
     public void getUserInfo(String uid) {
 
-        mCompositeSubscription.add(userApi.showUserInfo(uid).subscribe(new Subscriber<UserBean>() {
+        mCompositeSubscription.add(userApi.showUserInfo(uid).subscribe(new Subscriber<HomeWeiBo.StatusesBean.UserBean>() {
             @Override
             public void onCompleted() {
 
@@ -72,7 +71,7 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFrgmentContract.Vie
             }
 
             @Override
-            public void onNext(UserBean userBean) {
+            public void onNext(HomeWeiBo.StatusesBean.UserBean userBean) {
                 mView.showUserName(userBean);
 
             }

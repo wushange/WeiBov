@@ -22,8 +22,8 @@ public class WeiBoResult {
     private int interval;
     private boolean hasvisible;
     private int total_number;
-    private int previous_cursor;
-    private int next_cursor;
+    private long previous_cursor;
+    private long next_cursor;
     /**
      * text_tag_tips : []
      * source : <a href="http://app.weibo.com/t/feed/5yiHuw" rel="nofollow">iPhone 6 Plus</a>
@@ -88,19 +88,19 @@ public class WeiBoResult {
         this.total_number = total_number;
     }
 
-    public int getPrevious_cursor() {
+    public long getPrevious_cursor() {
         return previous_cursor;
     }
 
-    public void setPrevious_cursor(int previous_cursor) {
+    public void setPrevious_cursor(long previous_cursor) {
         this.previous_cursor = previous_cursor;
     }
 
-    public int getNext_cursor() {
+    public long getNext_cursor() {
         return next_cursor;
     }
 
-    public void setNext_cursor(int next_cursor) {
+    public void setNext_cursor(long next_cursor) {
         this.next_cursor = next_cursor;
     }
 
@@ -510,7 +510,7 @@ public class WeiBoResult {
             private int ptype;
             private int statuses_count;
             private boolean following;
-            @JSONField(name="class")
+            @JSONField(name = "class")
             private int classX;
             private boolean follow_me;
             private int verified_type;

@@ -12,7 +12,6 @@ import com.wsg.lovehome.MainComponent;
 import com.wsg.lovehome.R;
 import com.wsg.lovehome.base.BaseFragmentV4;
 import com.wsg.lovehome.bean.HomeWeiBo;
-import com.wsg.lovehome.bean.UserBean;
 import com.wsg.lovehome.util.AccessTokenKeeper;
 import com.wsg.lovehome.widget.AppTitle;
 import com.wsg.lovehome.widget.SpaceItemDecoration;
@@ -134,7 +133,7 @@ public class HomeFragment extends BaseFragmentV4 implements HomeFrgmentContract.
     }
 
     @Override
-    public void showUserName(UserBean userBean) {
+    public void showUserName(HomeWeiBo.StatusesBean.UserBean userBean) {
         appTitle.setCenterTitle(userBean.getScreen_name());
     }
 
