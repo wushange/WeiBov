@@ -120,10 +120,6 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
 
     }
 
-    @Override
-    protected boolean isEnableSwipBack() {
-        return true;
-    }
 
     @Override
     protected void onDestroy() {

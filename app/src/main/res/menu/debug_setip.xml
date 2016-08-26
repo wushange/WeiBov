@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/setip"
+        android:title="设置服务器" />
+    <item
+        android:id="@+id/setpro"
+        android:title="设置端口号" />
+</menu>

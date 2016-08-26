@@ -12,9 +12,10 @@ import javax.inject.Inject;
 /**
  * Created by wushange on 2016/8/25.
  */
-public class HomeAdapter  extends RecyclerArrayAdapter<HomeWeiBo.StatusesBean> {
+public class HomeAdapter extends RecyclerArrayAdapter<HomeWeiBo.StatusesBean> {
 
-    @Inject public HomeAdapter(Context context) {
+    @Inject
+    public HomeAdapter(Context context) {
         super(context);
     }
 

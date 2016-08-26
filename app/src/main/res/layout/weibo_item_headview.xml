@@ -16,8 +16,8 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/item_img_avator"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
                 android:layout_centerVertical="true"
                 android:src="@mipmap/avator_default" />
 
@@ -70,14 +70,16 @@
                     android:id="@+id/item_tv_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="昨天 10:09" />
+                    android:text="昨天 10:09"
+                    android:textSize="@dimen/text_size_12" />
 
                 <TextView
                     android:id="@+id/item_tv_fromtype"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:text="来自 ipone7" />
+                    android:text="来自 ipone7"
+                    android:textSize="@dimen/text_size_12" />
             </LinearLayout>
 
 

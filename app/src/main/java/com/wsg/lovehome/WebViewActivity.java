@@ -18,10 +18,6 @@ public class WebViewActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected boolean isEnableSwipBack() {
-        return true;
-    }
 
 
     @Override

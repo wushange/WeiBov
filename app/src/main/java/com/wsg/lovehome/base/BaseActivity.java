@@ -67,8 +67,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
         initView(mContextView);//初始化视图
         doBusiness(this);//初始化操作
 
-        setSwipeBackEnable(isEnableSwipBack());
-
     }
 
     /**
@@ -76,7 +74,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
      */
     public abstract void initInjector();
 
-    protected abstract boolean isEnableSwipBack();
 
 
     protected ApplicationComponent getApplicationComponent() {
@@ -194,7 +191,10 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     public SwipeBackLayout getSwipeBackLayout() {
         return mHelper.getSwipeBackLayout();
     }
-
+    public void setSwipeBackEnable(boolean enable, int flag) {
+        getSwipeBackLayout().setEnableGesture(enable);
+        getSwipeBackLayout().setEdgeTrackingEnabled(flag);
+    }
     @Override
     public void setSwipeBackEnable(boolean enable) {
         getSwipeBackLayout().setEnableGesture(enable);

@@ -10,6 +10,10 @@ public class Contanst {
                     + "friendships_groups_read,friendships_groups_write,statuses_to_me_read,"
                     + "follow_app_official_microblog," + "invitation_write";
     /**
+     * span颜色
+     */
+    public static final String SPAN_LINK_COLOR = "#6a8cb3";
+    /**
      * 服务器地址
      */
 

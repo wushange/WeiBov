@@ -85,10 +85,6 @@ public class WelcomeActivity extends BaseActivity {
     }
 
 
-    @Override
-    protected boolean isEnableSwipBack() {
-        return false;
-    }
 
 
     @Override

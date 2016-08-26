@@ -21,11 +21,6 @@ public class RegistActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected boolean isEnableSwipBack() {
-        return true;
-    }
-
 
     @Override
     public int bindLayout() {
