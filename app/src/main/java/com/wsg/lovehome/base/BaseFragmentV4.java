@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.wsg.lovehome.injector.HasComponent;
+import com.zgh.stylelib.style.StyleHelper;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -37,6 +38,7 @@ public abstract class BaseFragmentV4 extends Fragment implements IBaseFragment {
                              Bundle savedInstanceState) {
         Log.d(TAG, "BaseFragmentV4_-->onCreateView()");
         initInjector();
+        StyleHelper.initActivity(getActivity());
         if (null == mContextView) {
             initParms(getArguments());
             View mView = bindView();

@@ -53,6 +53,8 @@
     <string name="draft_box">草稿箱</string>
     <string name="more">更多</string>
     <string name="vip">会员</string>
+    <string name="setting_night">夜间模式</string>
+    <string name="setting_day">日间模式</string>
     <string name="setting_hotweibo">微博热点</string>
     <string name="setting_account_manager">账号管理</string>
     <string name="setting_account_security">账号安全</string>
@@ -67,9 +69,6 @@
     <string name="comment_text">评论</string>
     <string name="like_text">咱</string>
     <string name="find_group_text">发现群</string>
-
-
-
 
 
     <string name="move_up_to_cancel">手指上滑，取消发送</string>

@@ -23,6 +23,7 @@ import com.wsg.lovehome.widget.swipebacklayout.SwipeBackLayout;
 import com.wsg.lovehome.widget.swipebacklayout.Utils;
 import com.wsg.lovehome.widget.swipebacklayout.activity.SwipeBackActivityBase;
 import com.wsg.lovehome.widget.swipebacklayout.activity.SwipeBackActivityHelper;
+import com.zgh.stylelib.style.StyleHelper;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -68,7 +69,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
         mHelper = new SwipeBackActivityHelper(this);
         mHelper.onActivityCreate();
         ActivityManager.getActivityManager().addActivity(this);//统一管理activity  压入栈
-
+        StyleHelper.initActivity(this);
 
         mContextView = LayoutInflater.from(this).inflate(bindLayout(), null);
         setContentView(mContextView);

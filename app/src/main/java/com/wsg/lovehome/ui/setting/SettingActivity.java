@@ -3,6 +3,7 @@ package com.wsg.lovehome.ui.setting;
 import android.content.Context;
 import android.view.View;
 
+import com.kyleduo.switchbutton.SwitchButton;
 import com.wsg.lovehome.R;
 import com.wsg.lovehome.base.BaseActivity;
 import com.wsg.lovehome.widget.AppTitle;
@@ -16,6 +17,9 @@ public class SettingActivity extends BaseActivity {
 
     @BindView(R.id.apptitle)
     AppTitle appTitle;
+
+    @BindView(R.id.sb_style)
+    SwitchButton dayAndNight;
 
     @Override
     public void initInjector() {
@@ -44,6 +48,14 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     public void doBusiness(Context mContext) {
-
+//        dayAndNight.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                StyleHelper.changeStyle(0, 1);
+//
+//            }
+//        });
     }
+
+
 }

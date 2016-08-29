@@ -18,6 +18,7 @@ import com.wsg.lovehome.injector.component.DaggerApplicationComponent;
 import com.wsg.lovehome.injector.module.ApplicationModule;
 import com.wsg.lovehome.util.Contanst;
 import com.wsg.lovehome.util.GlideImageLoader;
+import com.zgh.stylelib.style.StyleHelper;
 
 import java.io.File;
 import java.util.concurrent.TimeUnit;
@@ -52,9 +53,9 @@ public class MyApplication extends android.app.Application {
         super.onCreate();
         initComponent();
         context = this;
+        StyleHelper.init(this, "wangyi", "baidu", "day");
         initGallyFinal();
         initFrescoConfig();
-//        LeakCanary.install(this);
         Logger.init("WUSHANGE").logLevel(LogLevel.FULL);
 //        LeakCanary.install(this);
 
