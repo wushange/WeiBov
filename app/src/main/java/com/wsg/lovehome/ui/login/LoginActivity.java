@@ -49,7 +49,7 @@ public class LoginActivity extends BaseActivity implements LoginContract.View {
     @Override
     public void initView(final View view) {
         loginPresenter.attachView(this);
-        mBaseOperation.setTranslucentStatus(true).setStatusBarTextColor(true);
+        setTranslucentStatus();
     }
 
     @Override

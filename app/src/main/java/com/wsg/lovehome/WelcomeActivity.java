@@ -58,7 +58,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     public void initView(View view) {
-        mBaseOperation.setTranslucentStatus(true).setStatusBarTextColor(true);
+        setTranslucentStatus();
     }
 
 
@@ -83,8 +83,6 @@ public class WelcomeActivity extends BaseActivity {
 
 
     }
-
-
 
 
     @Override

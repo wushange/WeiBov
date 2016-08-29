@@ -83,7 +83,7 @@ public class HomeViewHolder extends BaseViewHolder<HomeWeiBo.StatusesBean> {
             PipelineDraweeControllerBuilder controller = Fresco.newDraweeControllerBuilder();
             controller.setImageRequest(request);
             controller.setOldController(simpleDraweeView.getController());
-            controller.setAutoPlayAnimations(true);
+            controller.setAutoPlayAnimations(false);
             simpleDraweeView.setController(controller.build());
         }
 

@@ -3,16 +3,16 @@ package com.wsg.lovehome.base;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 
+import com.orhanobut.logger.Logger;
 import com.wsg.lovehome.MyApplication;
 import com.wsg.lovehome.injector.component.ActivityComponent;
 import com.wsg.lovehome.injector.component.ApplicationComponent;
@@ -51,6 +51,18 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     protected boolean autoDissIm = true;//是否自动检测点击屏幕边缘隐藏输入法
 
     @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Logger.e("land do nothing is ok");
+            // land do nothing is ok
+        } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            // port do nothing is ok
+            Logger.e("port do nothing is ok ");
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mHelper = new SwipeBackActivityHelper(this);
@@ -75,7 +87,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     public abstract void initInjector();
 
 
-
     protected ApplicationComponent getApplicationComponent() {
         return ((MyApplication) getApplication()).getApplicationComponent();
     }
@@ -85,21 +96,41 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     }
 
     /**
-     * set status bar translucency
+     * 设置状态栏文字高亮显示
+     *
+     * @param isDark
      */
-    protected void setTranslucentStatus(boolean on) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window win = getWindow();
-            WindowManager.LayoutParams winParams = win.getAttributes();
-            final int bits = WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS;
-            if (on) {
-                StatusBarUtil.setRootView(this);
-                winParams.flags |= bits;
-            } else {
-                winParams.flags &= ~bits;
-            }
-            win.setAttributes(winParams);
+    public void setStausBarTextDeep(boolean isDark) {
+        if (isDark == true) {
+            StatusBarUtil.setStatusBarTextColor(this, true);
+        } else {
+            StatusBarUtil.setStatusBarTextColor(this, false);
         }
+
+    }
+
+    /**
+     * 设置状态栏颜色
+     *
+     * @param color
+     */
+
+    public void setStatusColor(int color) {
+        StatusBarUtil.setColor(this, color);
+    }
+
+    /**
+     * 设置全屏模式透明
+     */
+    public void setTranslucentStatus() {
+        StatusBarUtil.setTranslucentStatus(this, true);
+    }
+
+    /**
+     * 设置全屏模式透明内容padding
+     */
+    public void setTranslucentStatusPadding() {
+        StatusBarUtil.setTransparent(this);
     }
 
     @Override
@@ -191,10 +222,12 @@ public abstract class BaseActivity extends AppCompatActivity implements IBaseAct
     public SwipeBackLayout getSwipeBackLayout() {
         return mHelper.getSwipeBackLayout();
     }
+
     public void setSwipeBackEnable(boolean enable, int flag) {
         getSwipeBackLayout().setEnableGesture(enable);
         getSwipeBackLayout().setEdgeTrackingEnabled(flag);
     }
+
     @Override
     public void setSwipeBackEnable(boolean enable) {
         getSwipeBackLayout().setEnableGesture(enable);

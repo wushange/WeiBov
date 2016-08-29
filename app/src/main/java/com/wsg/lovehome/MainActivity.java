@@ -1,6 +1,7 @@
 package com.wsg.lovehome;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -49,6 +50,17 @@ public class MainActivity extends AppCompatActivity implements HasComponent<Main
 
     List<BaseFragmentV4> fragmentV4s = new ArrayList<>();
     private MainComponent mMainComponent;
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Logger.e("land do nothing is ok");
+            // land do nothing is ok
+        } else if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            // port do nothing is ok
+            Logger.e("port do nothing is ok ");
+        }
+    }
 
     @Override
     protected void onCreate(Bundle arg0) {

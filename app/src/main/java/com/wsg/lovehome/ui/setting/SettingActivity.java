@@ -30,7 +30,7 @@ public class SettingActivity extends BaseActivity {
 
     @Override
     public void initView(View view) {
-        mBaseOperation.setStatusBarTextColor(true);
+        setStausBarTextDeep(true);
         appTitle.setLeftButtonRes(R.drawable.navigationbar_back_selete)
                 .setCenterTitle(R.string.setting)
                 .setLeftButtonClickListener(new View.OnClickListener() {

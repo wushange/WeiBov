@@ -38,7 +38,7 @@ public class RegistActivity extends BaseActivity {
                     }
                 }).setCenterTitle(R.string.regist_text)
                 .setCenterTitleColor(R.color.black_deep);
-        mBaseOperation.setStatusBarTextColor(true);
+        setStausBarTextDeep(true);
 
     }
 

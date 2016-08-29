@@ -1,12 +1,18 @@
 package com.wsg.lovehome.ui.hotweibo;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.backends.pipeline.PipelineDraweeControllerBuilder;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.request.ImageRequest;
+import com.facebook.imagepipeline.request.ImageRequestBuilder;
 import com.jaeger.ninegridimageview.NineGridImageView;
 import com.jaeger.ninegridimageview.NineGridImageViewAdapter;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
@@ -73,13 +79,21 @@ public class HotWeiBoListViewHolder extends BaseViewHolder<WeiBoResult.StatusesB
         @Override
         protected void onDisplayImage(Context context, ImageView imageView, WeiBoResult.StatusesBean.PicUrlsBean photo) {
 
-            Glide.with(context).load(photo.getThumbnail_pic().replace("thumbnail", "bmiddle")).into(imageView);
-
+            SimpleDraweeView simpleDraweeView = (SimpleDraweeView) imageView;
+            ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(photo.getThumbnail_pic().replace("thumbnail", "bmiddle")))
+                    .setProgressiveRenderingEnabled(true)
+                    .build();
+            PipelineDraweeControllerBuilder controller = Fresco.newDraweeControllerBuilder();
+            controller.setImageRequest(request);
+            controller.setOldController(simpleDraweeView.getController());
+            controller.setAutoPlayAnimations(false);
+            simpleDraweeView.setController(controller.build());
         }
 
         @Override
         protected ImageView generateImageView(Context context) {
-            return super.generateImageView(context);
+            SimpleDraweeView simpleDraweeView = new SimpleDraweeView(context);
+            return simpleDraweeView;
         }
 
         @Override
