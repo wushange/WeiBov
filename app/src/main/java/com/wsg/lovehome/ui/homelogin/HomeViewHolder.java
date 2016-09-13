@@ -17,7 +17,8 @@ import com.jaeger.ninegridimageview.NineGridImageView;
 import com.jaeger.ninegridimageview.NineGridImageViewAdapter;
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.wsg.lovehome.R;
-import com.wsg.lovehome.bean.HomeWeiBo;
+import com.wsg.lovehome.bean.TestPicUrlsBean;
+import com.wsg.lovehome.bean.TestStatusesBean;
 import com.wsg.lovehome.ui.imagepreview.ImagePreviewActivity;
 import com.wsg.lovehome.util.Html2Text;
 import com.wsg.lovehome.util.TimeLineUtility;
@@ -32,7 +33,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 /**
  * Created by wushange on 2016/8/25.
  */
-public class HomeViewHolder extends BaseViewHolder<HomeWeiBo.StatusesBean> {
+public class HomeViewHolder extends BaseViewHolder<TestStatusesBean> {
     private TextView userName;
     private TextView context;
     private TextView creatTime;
@@ -57,7 +58,7 @@ public class HomeViewHolder extends BaseViewHolder<HomeWeiBo.StatusesBean> {
     }
 
     @Override
-    public void setData(final HomeWeiBo.StatusesBean weibo) {
+    public void setData(final TestStatusesBean weibo) {
         Glide.with(super.getContext()).load(weibo.getUser().getAvatar_hd()).asBitmap().into(userAvator);
         userName.setText(weibo.getUser().getName());
         context.setText(TimeLineUtility.convertNormalStringToSpannableString(weibo.getText(), TimeLineUtility.TimeLineStatus.FEED));
@@ -72,9 +73,9 @@ public class HomeViewHolder extends BaseViewHolder<HomeWeiBo.StatusesBean> {
         likeCount.setText("" + weibo.getAttitudes_count());
     }
 
-    private NineGridImageViewAdapter<HomeWeiBo.StatusesBean.PicUrlsBean> mAdapter = new NineGridImageViewAdapter<HomeWeiBo.StatusesBean.PicUrlsBean>() {
+    private NineGridImageViewAdapter<TestPicUrlsBean> mAdapter = new NineGridImageViewAdapter<TestPicUrlsBean>() {
         @Override
-        protected void onDisplayImage(Context context, ImageView imageView, HomeWeiBo.StatusesBean.PicUrlsBean photo) {
+        protected void onDisplayImage(Context context, ImageView imageView,TestPicUrlsBean photo) {
 
             SimpleDraweeView simpleDraweeView = (SimpleDraweeView) imageView;
             ImageRequest request = ImageRequestBuilder.newBuilderWithSource(Uri.parse(photo.getThumbnail_pic().replace("thumbnail", "bmiddle")))
@@ -94,9 +95,9 @@ public class HomeViewHolder extends BaseViewHolder<HomeWeiBo.StatusesBean> {
         }
 
         @Override
-        protected void onItemImageClick(Context context, int index, List<HomeWeiBo.StatusesBean.PicUrlsBean> photoList) {
+        protected void onItemImageClick(Context context, int index, List<TestPicUrlsBean> photoList) {
             ArrayList<String> urls = new ArrayList<String>();
-            for (HomeWeiBo.StatusesBean.PicUrlsBean bean : photoList) {
+            for (TestPicUrlsBean bean : photoList) {
                 urls.add(bean.getThumbnail_pic().replace("thumbnail", "large"));
             }
             ImagePreviewActivity.startActivity(context, urls.get(index), urls);

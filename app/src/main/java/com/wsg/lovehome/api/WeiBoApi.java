@@ -4,6 +4,7 @@ package com.wsg.lovehome.api;
 import android.content.Context;
 
 import com.wsg.lovehome.bean.HomeWeiBo;
+import com.wsg.lovehome.bean.TestWeiBo;
 import com.wsg.lovehome.bean.WeiBoResult;
 import com.wsg.lovehome.components.retrofit.RequestHelper;
 import com.wsg.lovehome.util.AccessTokenKeeper;
@@ -45,7 +46,7 @@ public class WeiBoApi {
         return mWeiBoService.getPublicWeiBo(AccessTokenKeeper.readAccessToken(mContext).getToken(), 20, page).subscribeOn(Schedulers.io());
     }
 
-    public Observable<HomeWeiBo> getHomeWeiBo(int page) {
+    public Observable<TestWeiBo> getHomeWeiBo(int page) {
         return mWeiBoService.getHomeWeiBo(AccessTokenKeeper.readAccessToken(mContext).getToken(),20, page).subscribeOn(Schedulers.io());
 
     }

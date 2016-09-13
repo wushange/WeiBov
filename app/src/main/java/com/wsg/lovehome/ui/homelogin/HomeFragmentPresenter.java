@@ -6,11 +6,13 @@ import com.orhanobut.logger.Logger;
 import com.wsg.lovehome.api.UserApi;
 import com.wsg.lovehome.api.WeiBoApi;
 import com.wsg.lovehome.base.BasePresenter;
-import com.wsg.lovehome.bean.HomeWeiBo;
+import com.wsg.lovehome.bean.TestUserBean;
+import com.wsg.lovehome.bean.TestWeiBo;
 import com.wsg.lovehome.injector.PerActivity;
 
 import javax.inject.Inject;
 
+import io.realm.Realm;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -38,11 +40,28 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFrgmentContract.Vie
         mView.showLoading();
         mCompositeSubscription.add(weiBoApi.getHomeWeiBo(page)
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<HomeWeiBo>() {
+                .subscribe(new Action1<TestWeiBo>() {
                     @Override
-                    public void call(HomeWeiBo weiBoResult) {
-                            mView.hideLoading();
-                            mView.showWeiBoList(weiBoResult);
+                    public void call(final TestWeiBo weiBoResult) {
+                        Realm.getDefaultInstance().executeTransactionAsync(new Realm.Transaction() {
+                            @Override
+                            public void execute(Realm realm) {
+                                realm.delete(TestWeiBo.class);
+                                realm.copyToRealm(weiBoResult);
+                            }
+                        }, new Realm.Transaction.OnSuccess() {
+                            @Override
+                            public void onSuccess() {
+                                mView.hideLoading();
+                                mView.showWeiBoList(weiBoResult);
+                            }
+                        }, new Realm.Transaction.OnError() {
+                            @Override
+                            public void onError(Throwable error) {
+
+                            }
+                        });
+
 
                     }
                 }, new Action1<Throwable>() {
@@ -59,7 +78,7 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFrgmentContract.Vie
     @Override
     public void getUserInfo(String uid) {
 
-        mCompositeSubscription.add(userApi.showUserInfo(uid).subscribe(new Subscriber<HomeWeiBo.StatusesBean.UserBean>() {
+        mCompositeSubscription.add(userApi.showUserInfo(uid).subscribe(new Subscriber<TestUserBean>() {
             @Override
             public void onCompleted() {
 
@@ -71,7 +90,7 @@ public class HomeFragmentPresenter extends BasePresenter<HomeFrgmentContract.Vie
             }
 
             @Override
-            public void onNext(HomeWeiBo.StatusesBean.UserBean userBean) {
+            public void onNext(TestUserBean userBean) {
                 mView.showUserName(userBean);
 
             }

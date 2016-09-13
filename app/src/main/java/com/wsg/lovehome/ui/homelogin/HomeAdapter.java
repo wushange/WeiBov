@@ -5,14 +5,14 @@ import android.view.ViewGroup;
 
 import com.jude.easyrecyclerview.adapter.BaseViewHolder;
 import com.jude.easyrecyclerview.adapter.RecyclerArrayAdapter;
-import com.wsg.lovehome.bean.HomeWeiBo;
+import com.wsg.lovehome.bean.TestStatusesBean;
 
 import javax.inject.Inject;
 
 /**
  * Created by wushange on 2016/8/25.
  */
-public class HomeAdapter extends RecyclerArrayAdapter<HomeWeiBo.StatusesBean> {
+public class HomeAdapter extends RecyclerArrayAdapter<TestStatusesBean> {
 
     @Inject
     public HomeAdapter(Context context) {

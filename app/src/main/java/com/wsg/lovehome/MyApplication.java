@@ -27,6 +27,8 @@ import cn.finalteam.galleryfinal.CoreConfig;
 import cn.finalteam.galleryfinal.FunctionConfig;
 import cn.finalteam.galleryfinal.GalleryFinal;
 import cn.finalteam.galleryfinal.ThemeConfig;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 import okhttp3.Cache;
 import okhttp3.OkHttpClient;
 
@@ -56,6 +58,8 @@ public class MyApplication extends android.app.Application {
         StyleHelper.init(this, "wangyi", "baidu", "day");
         initGallyFinal();
         initFrescoConfig();
+        RealmConfiguration config = new RealmConfiguration.Builder(this).build();
+        Realm.setDefaultConfiguration(config);
         Logger.init("WUSHANGE").logLevel(LogLevel.FULL);
 //        LeakCanary.install(this);
 

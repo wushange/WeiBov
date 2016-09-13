@@ -2,6 +2,7 @@ package com.wsg.lovehome.ui.homelogin;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 
@@ -11,14 +12,20 @@ import com.orhanobut.logger.Logger;
 import com.wsg.lovehome.MainComponent;
 import com.wsg.lovehome.R;
 import com.wsg.lovehome.base.BaseFragmentV4;
-import com.wsg.lovehome.bean.HomeWeiBo;
+import com.wsg.lovehome.bean.TestStatusesBean;
+import com.wsg.lovehome.bean.TestUserBean;
+import com.wsg.lovehome.bean.TestWeiBo;
 import com.wsg.lovehome.util.AccessTokenKeeper;
 import com.wsg.lovehome.widget.AppTitle;
 import com.wsg.lovehome.widget.SpaceItemDecoration;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * Created by wushange on 2016/08/16.
@@ -72,7 +79,24 @@ public class HomeFragment extends BaseFragmentV4 implements HomeFrgmentContract.
                 .setRightImageClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        Realm realm = Realm.getDefaultInstance();
+                        final RealmResults<TestWeiBo> testWeiBos = realm.where(TestWeiBo.class).findAll();
+                        Logger.e(testWeiBos.toString());
+                        if (testWeiBos.size() != 0) {
+                            List<TestStatusesBean> tes = testWeiBos.get(0).getStatuses();
+                            if (tes.size() > 0) {
+                                adapter.clear();
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Logger.e("不为空-设置离线数据");
+                                        adapter.addAll(testWeiBos.first().getStatuses());
+                                    }
+                                }, 200);
 
+
+                            }
+                        }
                     }
                 });
 
@@ -110,13 +134,31 @@ public class HomeFragment extends BaseFragmentV4 implements HomeFrgmentContract.
             }
         });
         easyRecyclerView.setRefreshListener(this);
-        onRefresh();
+//        onRefresh();
 
     }
 
 
     @Override
     public void doBusiness(Context mContext) {
+        Realm realm = Realm.getDefaultInstance();
+        final RealmResults<TestWeiBo> testWeiBos = realm.where(TestWeiBo.class).findAll();
+        Logger.e(testWeiBos.toString());
+        if (testWeiBos.size() != 0) {
+            List<TestStatusesBean> tes = testWeiBos.get(0).getStatuses();
+            if (tes.size() > 0) {
+                adapter.clear();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Logger.e("不为空-设置离线数据");
+                        adapter.addAll(testWeiBos.first().getStatuses());
+                    }
+                }, 200);
+
+
+            }
+        }
         presenter.getUserInfo(AccessTokenKeeper.readAccessToken(getContext()).getUid());
 
     }
@@ -127,13 +169,12 @@ public class HomeFragment extends BaseFragmentV4 implements HomeFrgmentContract.
     }
 
     @Override
-    public void showWeiBoList(HomeWeiBo weiBoResult) {
+    public void showWeiBoList(TestWeiBo weiBoResult) {
         adapter.addAll(weiBoResult.getStatuses());
-
     }
 
     @Override
-    public void showUserName(HomeWeiBo.StatusesBean.UserBean userBean) {
+    public void showUserName(TestUserBean userBean) {
         appTitle.setCenterTitle(userBean.getScreen_name());
     }
 
